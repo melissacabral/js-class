@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>mouse follow demo</title>
+	<style type="text/css">
+		body{
+			margin: 0 auto;
+			background-color: hsl(207, 9%, 19%);
+			color: white;
+			max-width: 1000px;
+			font-family: sans-serif;
+			line-height: 1.4;
+		}
+		.demo {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+			width: 100%;
+			gap: 1em;			
+		}
+
+		.perspective-container {
+			perspective: 800px;
+			padding: 1em;
+		}
+		#card {
+			background-image: url(https://media.giphy.com/media/sIIhZliB2McAo/giphy.gif);
+			background-size: cover;
+			box-shadow: 0 0 140px 10px rgba(0,0,0,.5);
+			position: relative;
+			height: 300px;
+			width: 500px;
+			overflow: hidden;
+			--sheenX:  0;
+			--sheenY:  0;
+		}
+		/*sheen*/
+		#card::after {
+			content: "";
+			position: absolute;
+			top: -400px;
+			right: -400px;
+			bottom: -400px;
+			left: -400px;
+			background: linear-gradient(217deg, rgba(255,255,255,0), rgba(255,255,255,0) 35%, rgba(255,255,255,0.25) 45%, rgba(255,255,255,.25) 50%, rgba(255,255,255,0) 60%, rgba(255,255,255,0) 100%);
+			transform: translateX(var(--sheenX)) translateY(var(--sheenY));
+		}
+
+	</style>
+</head>
+<body>
+	<div class="demo">
+		<div class="text-content">
+		<h1>Move the mouse around</h1>
+		<p>This is just some side content. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div>
+		<div class="perspective-container">
+			<div id="card"></div>
+		</div>
+	</div>
+
+<script type="text/javascript">
+	//when the mouse moves, make the 'card' follow it
+	const card = document.getElementById('card');
+	let height, width;
+
+	document.addEventListener('mousemove', handleMove);
+
+	function handleMove(e){
+		height = window.innerHeight;
+		width = window.innerWidth;
+		console.log(e.pageX, e.pageY);
+		//formula to get 20 and -20 degree angles
+		let yDegree = event.pageX / width * 40 - 20;
+		let xDegree = event.pageY / height * -1 * 40 + 20;
+		card.style.transform  = `rotateY(${yDegree}deg) rotateX(${xDegree}deg)`;
+		moveSheen( e.pageX/width, e.pageY/height );
+	}
+
+	function moveSheen(x, y){
+		let xOffset = 1 - (x - .5) * 800;
+		let yOffset = 1 - (y - .5) * 800;
+		card.style.setProperty('--sheenX', xOffset + 'px');
+		card.style.setProperty('--sheenY', yOffset + 'px');
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Practice using the console!</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css" integrity="sha512-xiunq9hpKsIcz42zt0o2vCo34xV0j6Ny8hgEylN3XBglZDtTZ2nwnqF/Z/TTCc18sGdvCjbFInNd++6q3J0N6g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<style type="text/css">
+		body.container{
+			padding: 2em ;
+			font-size: 190%;
+		}
+		code{
+			font-size: 100%;
+		}
+	</style>
+
+</head>
+<body class="container">
+	<h1>Browser Console demo</h1>
+	<h2>Open and dock the console</h2>
+
+	<p>This tutorial is designed so that you can open up the demo and try all the workflows yourself. When you physically follow along, you're more likely to remember the workflows later.</p>
+
+	<p>Press <code>Command+Option+J</code> (Mac) or <code>Control+Shift+J</code> (Windows, Linux, ChromeOS) to open the Console, right here on this very page.</p>
+
+	<p>You can use the options in the upper right <code>&vellip;</code> to control how the console docks to the page, or pop it out completely.</p>
+
+	<hr>
+	<h2>View and change elements on the page</h2>
+
+	<p>The first button below has an ID of <code>"first-button"</code></p>
+
+	<button id="first-button">First Button</button>
+	<button id="second-button">Second Button</button>
+
+	<p>Type <code>document.getElementById('first-button').textContent = 'Hello, Console!'</code> in the Console and then press Enter to evaluate the expression. Notice how the text inside the button changes.</p>
+
+	<h3>Other commands to try!</h3>
+	<p>Try each of these lines in the console, one at a time. </p>
+	<p><pre><code>document.getElementById('first-button').classList.add('button-outline')
+
+	document.getElementById('second-button').style.backgroundColor = 'red'
+
+	document.getElementById('second-button').remove()</code></pre></p>
+	<hr>
+	
+	<p>These lines will affect the image below</p>
+	<p><pre><code>document.getElementById('demo-image').src = 'https://picsum.photos/id/0/300/300'
+
+document.getElementById('demo-image').classList.add('float-right')
+</code></pre></p>
+
+	<img src="https://picsum.photos/id/237/300/300" id="demo-image">
+
+	<h2>Run arbitrary JavaScript that's not related to the page</h2>
+	<p>Sometimes, you just want a code playground where you can test some code, or try out new JavaScript features you're not familiar with. The Console is a perfect place for these kinds of experiments.</p>
+	<ol>
+		<li>Type <code>5 + 15</code> in the Console. The result <code>20</code> will appear below your expression (unless your expression takes too much time to evaluate).</li>
+		<li>Type the following code into the Console. Try typing it out, character-by-character, rather than copy-pasting it.
+			<pre><code>function add(a, b=20) {
+  return a + b;
+}</code></pre></li>
+		<li>Now, call the function that you just defined.
+			<pre><code>add(25);</code></pre>
+		</li>
+	</ol>
+
+
+	<hr>
+	<h2>Access variables, functions and objects defined on the page</h2>
+	<p>This file already has some variables and functions defined in its source code! You can also access the objects that are built into the browser, like the <code>window</code> and <code>document</code>. Try these lines: </p>
+	<pre><code>score
+
+nameOfClass
+
+daysTillHalloween()
+
+document.title
+
+window.innerWidth
+</code></pre>
+
+<h2>More Console Features</h2>
+<p>If you want to get to know more advanced features of the console, check out <a href="https://developer.chrome.com/docs/devtools/console/reference/#js">The Console Features Reference</a></p>
+
+<script type="text/javascript">
+	//example variable
+	let score = 456789351;
+	let nameOfClass = 'WS300 - JavaScript for Designers';
+	//example function
+	function daysTillHalloween(){
+		let today = new Date();
+		let hallowYear = today.getFullYear();
+
+		if (today.getMonth() == 9 && today.getDate() > 31) {
+			hallowYear = hallowYear + 1;
+		}
+
+		let hallowDate = new Date(hallowYear, 9, 31);
+		let dayMilliseconds = 1000 * 60 * 60 * 24;
+
+		let remainingDays = Math.ceil((hallowDate.getTime() - today.getTime()) / (dayMilliseconds));
+		return "There are " + remainingDays +" days remaining until Halloween";
+	}
+</script>
+</body>
+</html>

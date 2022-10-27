@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Logic Statements</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css" integrity="sha512-xiunq9hpKsIcz42zt0o2vCo34xV0j6Ny8hgEylN3XBglZDtTZ2nwnqF/Z/TTCc18sGdvCjbFInNd++6q3J0N6g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<style type="text/css">
+		body{
+			max-width: 800px;
+			margin: 0 auto;
+		}
+		section{
+			min-height: 95vh;
+			padding: 3%;
+		}
+		.note{
+			background-color: #FFFBE3;
+			padding: 1em;
+			margin: 1em 0;
+		}
+		.output{
+			outline:  dashed 1px #D8D8D8;
+			padding: .3em .5em;
+		}
+	</style>
+</head>
+<body>
+
+	<!-- 
+	template:
+	<section id="NAME">
+		<h2>TITLE</h2>
+		<blockquote>DESCRIPTION</blockquote>
+		<p class="output"></p>
+	</section>
+	 -->
+
+	<section>
+	<h1>Logic: Conditional Statements</h1>
+	
+
+	<p>In JavaScript we have the following conditional statements:</p>
+	<ul>
+		<li>Use <code>if</code> to specify a block of code to be executed, if a specified condition is true</li>
+		<li>Use <code>else</code> to specify a block of code to be executed, if the same condition is false</li>
+		<li>Use <code>else if</code> to specify a new condition to test, if the first condition is false</li>
+		<li>Use <code>switch</code> to specify many alternative blocks of code to be executed</li>
+	</ul>
+	<p class="note">For more examples and documentation, check out <a href="https://www.w3schools.com/js/js_if_else.asp">W3Schools</a></p>
+	</section>
+
+	<section id="if">
+		<h2>Basic If Statement</h2>
+		<blockquote>
+			The most common "bread-and butter" logic statement is the IF statement
+		</blockquote>
+<pre><code>if (condition) {
+	code block
+}</code></pre>
+		<p>
+			The following will output "Yes it is Monday" if today is Monday. Nothing happens if it's not Monday!
+		</p>
+		
+		<p class="output"></p>
+	</section>
+
+	<section id="if-else">
+        <h2>Branching Logic: if/else</h2>
+        <blockquote>
+            To add a branch to the logic so that something happens if the condition is not met, add an 'else' statement to the end. the two outcomes are mutually exclusive, so only one of them will happen!
+        </blockquote>
+<pre><code>if (condition) {
+    code block if condition met
+} else {
+    code block if condition NOT met
+}</code></pre>
+<p>The following will output "yes, it is Monday" if it is Monday, and will output "Nope, not Monday" if not. </p>
+        <p class="output"></p>
+    </section>
+
+	<section id="if-elseif-else">
+		<h2>Multiple Branches - If/Else If/Else</h2>
+		<blockquote>You can add as many <code>else if()</code> conditions as you need to after the first "if" to create multiple mutually-exclusive branches. <code>else</code> is optional, but must be the last statement if present. </blockquote>
+<pre><code>if (condition 1) {
+	//code block if the condition 1 is met
+} else if (condition 2) {
+	//code block if the condition 1 is NOT met, but condition 2 is met
+} else if (condition 3) {
+	//code block if the condition 1 and 2 are NOT met, but condition 3 is met
+} else {
+	//code block if none of the conditions are met
+}</code></pre>
+		<p>The following will output different messages depending on what day of the week it is</p>
+		<p class="output"></p>
+	</section>
+
+	<section id="switch">
+		<h2>Multiple Branches - Switch</h2>
+		<blockquote>The Switch statement allows a slightly more compact way to write multiple logic branches that evaluate the same expression.  </blockquote>
+<pre><code>switch(expression){
+	case 'value1' :
+		//what to do if the expression matches value1
+	break;
+	case 'value2' :
+		//what to do if the expression matches value2
+	break;
+	case 'value3' :
+		//what to do if the expression matches value3
+	break;
+	default:
+		//what to do if none of the cases match the expression
+
+}</code></pre>
+		<p>The following will output different messages depending on what day of the week it is</p>
+		<p class="output"></p>
+		<p class="note">Check out more switch documentation at <a href="https://www.w3schools.com/js/js_switch.asp">W3 Schools</a></p>
+	</section>
+	
+	<script type="text/javascript">
+		const ifEl = document.querySelector("#if .output");
+
+		//if example: If today is Monday
+		let today = new Date();
+		let dayOfWeek = today.getDay();
+
+		//getDay returns an integer
+		console.log(dayOfWeek);
+
+		if( dayOfWeek === 1 ){
+			ifEl.innerText = 'Yes it is Monday';
+		};
+
+		//if/else
+		const ifElseEl = document.querySelector("#if-else .output");
+
+		if( dayOfWeek === 1 ){
+			ifElseEl.innerText = 'Yep, Monday';
+		} else {
+			ifElseEl.innerText = 'Nope! not Monday!!!!';
+		};
+
+		//if else if else
+		const ifElseIfEl = document.querySelector("#if-elseif-else .output");
+		let message = '';
+
+		if( dayOfWeek === 1 ){
+			message = 'Happy Monday';
+		} else if( dayOfWeek === 2 ){
+			message = 'It\'s Taco Tuesday';
+		} else if( dayOfWeek === 3 ){
+			message = 'Wing Wednesday';
+		} else if( dayOfWeek === 4 ){
+			message = 'Thursday is just pre-Friday';
+		} else if( dayOfWeek === 5 ){
+			message = 'Finally Friday';
+		} else if( dayOfWeek === 6 || dayOfWeek === 0 ){
+			message = 'It\'s the Weekend!';
+		} else {
+			message = 'Oops something is wrong';
+		}
+		
+		//display it in the browser
+		ifElseIfEl.innerText = message;
+
+		//switch example
+		const switchEl = document.querySelector("#switch .output");
+		switch( dayOfWeek ){
+			case 1 :
+				message = 'Monday';
+			break;
+			case 2 :
+				message = 'Tostada Tuesday';
+			break;
+			case 3 :
+				message = 'Wednesday';
+			break;
+			case 4 :
+				message = 'Thursday';
+			break;
+			case 5 :
+				message = 'Friday!';
+			break;
+			default : 
+				message = 'It must be the weekend!';
+		};
+		//display it
+		switchEl.innerText = message;
+	</script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Color Randomizer</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css" integrity="sha512-xiunq9hpKsIcz42zt0o2vCo34xV0j6Ny8hgEylN3XBglZDtTZ2nwnqF/Z/TTCc18sGdvCjbFInNd++6q3J0N6g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<style type="text/css">
+		body{
+			transition: background .1s ease-in;
+			background-color: rgb(255, 150, 0);
+		}
+		h1{
+			background-color: rgba(255,255,255,.2);
+			width: 70%;
+			max-width: 600px;
+			margin: 10% auto 2%;
+			padding: 3em;
+			text-align: center;
+		}
+		/*gradient simulation*/
+		.container:after {
+			pointer-events: none;
+			display:block;
+			content:'';
+			position: fixed;
+			top:0;
+			left:0;
+			width: 100%;
+			height: 100vh;
+			background: -webkit-linear-gradient(to top, #ffffff, #000000);
+			/* Chrome 10-25, Safari 5.1-6 */
+			background: linear-gradient(to top, #ffffff, #000000);
+			/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+			mix-blend-mode: overlay;
+		}
+		.box{
+			background-color: yellow;
+			min-height: 100px;
+			margin: 1em;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Click to Randomize</h1>
+
+		<div class="row">
+			<div class="column box">Box 1</div>
+			<div class="column box">Box 2</div>
+			<div class="column box">Box 3</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+	//apply the color when we click the document
+	document.addEventListener('click', handleClicks);
+	//document.addEventListener('mousemove', applyColor);
+	//TODO: make a different handler for the resize
+	//window.addEventListener('resize', handleWindow);
+
+	//when any box is clicked, change the background of that box, otherwise change the body bg
+	function handleClicks(e){
+		if( e.target.matches('.box')  ){
+			//put the BG color on the box
+			e.target.style.backgroundColor = generateColor();
+		}else{
+			//put the BG color on the body
+			document.body.style.backgroundColor = generateColor();
+		}
+
+	}
+
+
+
+	//generate a random color
+	function generateColor(){
+		let r = Math.round( Math.random() * 256 );
+		let g = Math.round( Math.random() * 256 );
+		let b = Math.round( Math.random() * 256 );
+		//rgb(x,y,z)
+		return `rgb(${r}, ${g}, ${b})`;
+
+	}
+</script>
+</body>
+</html>

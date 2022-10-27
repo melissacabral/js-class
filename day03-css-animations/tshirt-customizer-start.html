@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Customize your T-shirt</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css" integrity="sha512-xiunq9hpKsIcz42zt0o2vCo34xV0j6Ny8hgEylN3XBglZDtTZ2nwnqF/Z/TTCc18sGdvCjbFInNd++6q3J0N6g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<style type="text/css">
+		/*define CSS vars on the root*/
+		:root{
+			--base-color: #ffc600;
+			--text-color:  black;
+			--font:  Impact, Arial, sans-serif;
+			--size:  30px;
+		}
+		body{
+			background-color: #F9F7DE;
+		}
+		select, input[type=color]{
+			background-color: white;
+		}
+		input[type=range]{
+			width: 100%;
+		}
+		.container{
+			padding-top: 3em;
+		}
+
+		#shirt{
+			background-color: var(--base-color);			
+			font-size: var(--size);
+			font-family: var(--font);
+			color: var(--text-color);
+			width: 250px;
+			height: 350px;
+			position: relative;
+			left: 50%;
+			margin-left: -125px;
+			padding: 20px;
+			text-align: center;
+			border-radius: 25px 30px 5px 5px ;
+			display: grid;
+			align-content: center;
+			line-height: 1;
+			word-break: break-word;
+			filter: drop-shadow(5px 10px 8px rgba(0,0,0,.2));
+			transform: rotate(5deg);
+			transition: all .3s ease-in-out;
+		}
+		
+		#shirt:before, #shirt:after{
+			background-color: inherit;
+			content: '';
+			display: block;
+			width: 100px;
+			height: 150px;
+			position: absolute;
+			top: 2px;
+			left: 14px;
+			transform: rotate(45deg);
+			transform-origin: 0 0;
+			z-index: -9;
+			border-radius: 20px 20px 5px 5px ;
+
+		}
+		#shirt:after{
+			left: auto;
+			right: 14px;
+			transform-origin: 100% 0;
+			transform: rotate(-45deg);
+		}
+		#shirt.turn{
+			transform: rotate(-5deg);
+		}
+	</style>
+</head>
+<body>
+	<div class="container">		
+		<div class="row">			
+			<div class="column column-33">
+				<h1>Customize your Shirt</h1>
+				<div class="controls">
+					<label for="size">Text Size:</label>
+					<input id="size" type="range" name="size" min="10" max="60" value="30"  class="style-customizer">
+
+					<label for="blur">Font:</label>
+					<select name="font" id="font" class="style-customizer">
+						<option value="Georgia">Georgia</option>
+						<option value="Papyrus">Papyrus</option>
+						<option value="Impact" selected>Impact</option>
+					</select>
+
+					<label for="base-color">Base Color</label>
+					<input id="base-color" type="color" name="base-color" value="#ffc600" class="style-customizer">
+				</div>
+			</div>
+			<div class="column column-66">			
+				<div id="shirt">
+					<div id="text" contenteditable>Funny Saying Here</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<script type="text/javascript">
+		//get the inputs
+		const colorPicker = document.getElementById("base-color");
+		const slider = document.getElementById("size");
+		const fontPicker = document.getElementById("font");
+
+		const shirt = document.getElementById("shirt");
+
+		//handle the 'change' events
+		colorPicker.addEventListener("change", handleColor);
+		slider.addEventListener("change", handleSize);
+		//slider.addEventListener("mousemove", handleSize);
+		fontPicker.addEventListener("change", handleFont);
+
+		
+		function handleFont(){
+			document.documentElement.style.setProperty( '--font', this.value );
+			shirt.classList.toggle('turn');
+		}
+
+		function handleSize(){
+			console.log(this.value);
+			document.documentElement.style.setProperty('--size', this.value + 'px');
+			shirt.classList.toggle('turn');
+		}
+
+		function handleColor(){
+			//console.log(this);
+			//apply it to the css root vars
+			document.documentElement.style.setProperty('--base-color' , this.value);
+			//change the text color
+			document.documentElement.style.setProperty('--text-color', getContrast(this.value));
+			shirt.classList.toggle('turn');
+		}
+
+
+		function getContrast (hexcolor){
+			// If a leading # is provided, remove it
+			if (hexcolor.slice(0, 1) === '#') {
+				hexcolor = hexcolor.slice(1);
+			}
+			// Convert to RGB value
+			var r = parseInt(hexcolor.substr(0,2),16);
+			var g = parseInt(hexcolor.substr(2,2),16);
+			var b = parseInt(hexcolor.substr(4,2),16);
+
+			// Get YIQ ratio
+			var yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+
+			// Check contrast
+			return (yiq >= 128) ? 'black' : 'white';
+			
+			if(yiq >= 128){
+				return 'black';
+			}else{
+				return 'white';
+			}
+
+		};
+</script>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Customize your Meal</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css" integrity="sha512-xiunq9hpKsIcz42zt0o2vCo34xV0j6Ny8hgEylN3XBglZDtTZ2nwnqF/Z/TTCc18sGdvCjbFInNd++6q3J0N6g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<style type="text/css">
+		body{
+			background-image: url(https://picsum.photos/id/143/1600/1000);
+			background-size: cover;
+			display: grid;
+			align-items: center;
+			justify-items: center;
+			min-height: 100vh;
+		}
+		.container{
+			background-color: rgba(255,255,255,.9);
+			padding: 2em;
+		}
+		button{
+			background-color: #77B34F;
+			border-color: #77B34F;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Build the perfect salad!</h1>
+		<div class="row">
+			<div class="column" id="my-salad">
+				<h2>My Salad</h2>
+			</div>
+			<div class="column" id="extra-toppings">
+				<h2>Available Add-ons</h2>
+			</div>
+		</div>
+	</div>
+
+<script>
+	//create a <ul> and add it to the div#my-salad
+	const saladContainer = document.getElementById('my-salad');
+	const saladList = document.createElement('ul');
+	saladContainer.appendChild( saladList );
+
+	//simple list of salad ingredients - array!
+	const ingredients = [ 'Salad Greens', 'Cucumber', 'Tomato', 'Broccoli', 'Sweet Potato', 'Chickpeas' ];
+
+	//loop through each item in the ingredients list and add a <li>
+	for( let ingredient of ingredients ){
+		console.log(ingredient);
+		let saladLi = document.createElement('li');
+		saladList.appendChild(saladLi);
+		saladLi.innerText = ingredient;
+		saladLi.classList.add('salad-item');
+	}
+
+	//extra toppings
+	const extrasList = document.createElement('ul');
+	const extrasContainer = document.getElementById('extra-toppings');
+	extrasContainer.appendChild(extrasList);
+
+	//list of extras
+	const extras = ['Avocado', 'Cheese', 'Croutons', 'Onions', 'Ham'];
+
+	for( let extra of extras ){
+		let extraLi = document.createElement('li');
+		extrasList.appendChild(extraLi);
+		extraLi.classList.add('extra-item');
+		extraLi.innerText = extra;
+	}
+
+	//listen for all clicks on this document
+	document.addEventListener( 'click', function(event){
+		console.log(event.target);
+		//if you clicked on a salad item, remove it
+		if(event.target.matches('#my-salad li')){
+			event.target.remove();
+		}else 
+		//if you clicked on an extra, clone it to the salad list
+		if(event.target.matches('#extra-toppings li')){
+			saladList.appendChild(event.target.cloneNode(true));
+		}
+	} );
+
+
+
+
+
+</script>
+</body>
+</html>

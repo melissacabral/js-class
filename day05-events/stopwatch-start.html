@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Stopwatch</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css" integrity="sha512-xiunq9hpKsIcz42zt0o2vCo34xV0j6Ny8hgEylN3XBglZDtTZ2nwnqF/Z/TTCc18sGdvCjbFInNd++6q3J0N6g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<style type="text/css">
+		html{
+			font-size: 130%;
+		}
+		body{
+			background-color: #30313C;
+			color: #D8C9E8;
+			text-align: center;
+		}
+		
+		#start{
+			background-color: #21B86C;
+			border-color: #21B86C;
+		}
+		#stop{
+			background-color: #EF2266;
+			border-color: #EF2266;
+		}
+	</style>
+</head>
+<body>
+	<div id="stopwatch-container">
+		<h3>Stopwatch</h3>
+		<div id="stopwatch-output">
+			<!-- keep these squished together like this to avoid whitespace pops -->
+			<h1><span id="seconds">00</span>:<span id="centiseconds">00</span></h1>
+		</div>
+		<button id="start">Start</button>
+		<button id="stop">Stop</button>
+		<button id="reset" class="button-outline">Reset</button>
+	</div>
+<script type="text/javascript">
+	//pre-define all the variables
+	let seconds = '00';
+	let centiseconds = '00';
+
+	const startButton = document.getElementById('start');
+	const stopButton = document.getElementById('stop');
+	const resetButton = document.getElementById('reset');
+	const secondsEl = document.getElementById('seconds');
+	const centiEl = document.getElementById('centiseconds');
+
+	let interval;
+
+	//when you click start, run the timer interval
+	startButton.addEventListener( 'click', function(e){
+		//turn the timer on, and let it update every centisecond (10ms)
+		interval = setInterval( advanceTimer, 10 );
+	} );
+
+	//when you click stop, pause the watch (stop running the interval)
+	stopButton.addEventListener( 'click', function(e){
+		clearInterval(interval);
+	} );
+
+	//reset button
+	resetButton.addEventListener( 'click', function(e){
+		clearInterval( interval );
+		//reset all the values
+		seconds = '00';
+		centiseconds = '00';
+		//display them 
+		centiEl.innerHTML = centiseconds;
+		secondsEl.innerHTML = seconds;
+	} );
+
+
+	//function that runs every 10ms
+	function advanceTimer(){
+		centiseconds ++;
+		//output
+		if(centiseconds < 10){
+			centiseconds = '0' + centiseconds;
+		} 
+
+		if(centiseconds > 99){
+			seconds ++ ;
+			centiseconds = '00';
+
+			if( seconds < 10 ){
+				seconds = '0' + seconds;
+			}			
+		}
+		
+		centiEl.innerHTML = centiseconds;
+		secondsEl.innerHTML = seconds;
+	}
+
+	//challenge! add "minutes" every 60 seconds
+	//challenge! add keyboard shortcuts
+
+</script>
+</body>
+</html>

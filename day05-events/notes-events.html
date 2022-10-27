@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Events</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css" integrity="sha512-xiunq9hpKsIcz42zt0o2vCo34xV0j6Ny8hgEylN3XBglZDtTZ2nwnqF/Z/TTCc18sGdvCjbFInNd++6q3J0N6g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	 <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/styles/atom-one-light.min.css">
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/highlight.min.js"></script>
+	<style type="text/css">
+		body{
+			max-width: 1000px;
+			margin: 0 auto;
+		}
+		section{
+			min-height: 80vh;
+			padding: 3%;
+		}
+		.note{
+			background-color: #FFFBE3;
+			padding: 1em;
+			margin: 1em 0;
+		}
+		.output{
+			outline:  dashed 1px #D8D8D8;
+			padding: .3em .5em;
+		}
+	</style>
+</head>
+<body>
+	<!-- 
+	template:
+	<section id="NAME">
+		<h2>TITLE</h2>
+		<blockquote>DESCRIPTION</blockquote>
+		<p class="output"></p>
+	</section>
+	 -->
+	 <section id="intro">
+		<h2>Event Basics</h2>
+		<blockquote>Events are things that happen at a certain time. JavaScript can react to these events. They're happening all the time, whether we react to them or not. </blockquote>
+		<h3>Examples:</h3>
+		<ul>
+			<li>A button was clicked</li>
+			<li>A key was pressed</li>
+			<li>An input field changed</li>
+			<li>The HTML page finished loading</li>
+			<li>The window was resized</li>
+		</ul>
+		<p class="note">Check the documentation for <a target="_blank" href="https://www.w3schools.com/jsref/dom_obj_event.asp">many examples of events that JS can respond to</a></p>
+		
+		
+	</section>
+	<section class="event-examples">
+		<h2>Handling Events</h2>
+		<p>Notice that in all of those examples, there is an object that is connected to the event. This will help us write the JS code in the right order</p>
+		<p>Using onClick</p>
+		<pre><code class="language-javascript">myButton.onclick = function() {
+	console.log('you clicked the button');
+};</code></pre>
+		<p>using addEventListener</p>
+		<pre><code class="language-javascript">//object.addEventListener("event", function);
+myButton.addEventListener(&#039;click&#039;, function() {
+	console.log('you clicked the button');
+});
+</code></pre>
+	</section>
+	<section class="event-examples">
+		<h2>The Event Handler Function</h2>
+		<p>Taking care of an event means setting up two mechanisms: the <b>event listener</b> and the <b>event handler</b>. </p>
+		<p>The Event handler is a function that describes "what to do when the event is heard"</p>
+		<p>In the following code examples, notice there are many valid ways to setup the same functionality:
+			</p>
+		<h3>Callback Function</h3>
+<pre><code class="language-javascript">myButton.addEventListener(&#039;click&#039;, doTheThing);
+function doTheThing(){
+	console.log('you clicked');
+}
+</code></pre>
+<h3>Anonymous Function</h3>
+<pre><code class="language-javascript">myButton.addEventListener(&#039;click&#039;, function(){
+	console.log('you clicked');
+});
+</code></pre>
+<h3>Arrow Function</h3>
+<pre><code class="language-javascript">myButton.addEventListener(&#039;click&#039;, () => {
+	console.log('you clicked');
+});
+</code></pre>
+
+	</section>
+	<section>
+	<h2>The Event Parameter</h2>
+		<p>We can tell a lot about the event using an optional parameter in the event function. </p>
+		<pre><code>myButton.addEventListener( "click", function(e) {
+	//e stands for event data 
+	//e.target is the element that was clicked on 
+	console.log(e.target); 
+ });
+</code></pre>
+
+		
+	</section>
+	<section>
+		<h2>Events bubbling up the DOM</h2>
+		<p>There's a parent container here with a "click" event listener attached it it. It contains a bunch of clickable elements in it. click on them and watch what the Console reports as the target, currentTarget, etc:</p>
+		<div id="clickable-container" class="output">
+			<img class="placeholder" src="https://picsum.photos/100/100"><br>
+			<button class="button">button</button>
+			<br>
+			<a href="javascript:;" title="Just testing">This is a link with no real HREF</a>
+			<input type="text" value="this is a text input">
+		</div>
+		
+	</section>
+	<section>
+		<h2>Scrolling</h2>
+		<p>The output below should show how much the user has scrolled on this page</p>
+		<p class="output" id="showScroll"></p>
+		<pre><code>window.addEventListener(&#039;scroll&#039;, function() {
+  document.getElementById(&#039;showScroll&#039;).innerHTML = window.pageYOffset + &#039;px&#039;;
+});</code></pre>
+	</section>
+
+
+	
+<script type="text/javascript">
+//bubbling demo
+const clickableParent = document.getElementById('clickable-container');
+clickableParent.addEventListener("click", function(e) {
+    console.log('"currentTarget" means ' + e.currentTarget); 
+    console.log('"target" means ' + e.target); 
+    console.log('"this" means ' + this); 
+    console.log('The x,y coordinates that you clicked on are ' + e.clientX, e.clientY); 
+ });
+//scroll demo
+window.addEventListener('scroll', function() {
+  document.getElementById('showScroll').innerHTML = window.pageYOffset + 'px';
+});
+</script>
+</script>
+	<script>hljs.highlightAll();</script>
+</body>
+</html>

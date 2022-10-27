@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Loops</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css" integrity="sha512-xiunq9hpKsIcz42zt0o2vCo34xV0j6Ny8hgEylN3XBglZDtTZ2nwnqF/Z/TTCc18sGdvCjbFInNd++6q3J0N6g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	 <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/styles/atom-one-light.min.css">
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/highlight.min.js"></script>
+	<style type="text/css">
+		body{
+			max-width: 1000px;
+			margin: 0 auto;
+		}
+		section{
+			min-height: 80vh;
+			padding: 3%;
+		}
+		.note{
+			background-color: #FFFBE3;
+			padding: 1em;
+			margin: 1em 0;
+		}
+		.output{
+			outline:  dashed 1px #D8D8D8;
+			padding: .3em .5em;
+		}
+	</style>
+</head>
+<body>
+	<!-- 
+	template:
+	<section id="NAME">
+		<h2>TITLE</h2>
+		<blockquote>DESCRIPTION</blockquote>
+		<p class="output"></p>
+	</section>
+	 -->
+
+	<h1>Loops in JS</h1>
+	<section id="for">
+		<h2>for Loop</h2>
+		<blockquote>FOR loops are good for doing something a set number of times, like generating 5 random numbers, or rolling a dice three times, or placing 6 images on the screen</blockquote>
+		<pre><code class="language-javascript">const forEl = document.querySelector(&#039;#for .output&#039;);
+//generate 5 random numbers
+for (var i = 0; i &lt;= 5; i++) {
+	let rand = Math.round( Math.random() * 10 ) ;
+	forEl.insertAdjacentHTML(&#039;beforeend&#039;, `The for loop is on iteration ${i}, The random number is ${rand}&lt;br&gt;`);			
+}</code></pre>
+		<p class="output"></p>
+	</section>
+	<section id="for-each">
+		<h2>forEach Loop</h2>
+		<blockquote>
+			for each loops are specifically for looping through each item in an array. Here we have a list of players and we want to show a list item for each one:
+		</blockquote>
+		<pre><code class="language-javascript">const forEachEl = document.querySelector(&#039;#for-each ol.output&#039;);
+//show all the names of all the players in the list
+allPlayers = [&#039;Alfonso&#039;, &#039;Georgia&#039;, &#039;Barry&#039;, &#039;Soleil&#039;, &#039;Terry&#039;, &#039;Cynthia&#039;];
+
+allPlayers.forEach(function(player) {
+   forEachEl.insertAdjacentHTML(&#039;beforeend&#039;, `&lt;li&gt;${player}&lt;/li&gt;`);	
+});</code></pre>
+		<ol class="output"></ol>
+	
+	<p class="note">
+		<a href="https://www.geeksforgeeks.org/difference-between-foreach-and-for-loop-in-javascript/">Read more about the difference between for and forEach</a>
+	</p>
+	</section>
+	
+	<section id="while">
+		<h2>While Loop</h2>
+		<blockquote>
+			While loops are for conditions that will eventually be met, like a counter that will increase until it reaches a limit. This example adds a random number to an amount until the amount reaches 50.  A while loop will do nothing if the condition is not met. if the amount starts higher than 50, nothing will output!
+		</blockquote>
+		<pre><code class="language-javascript">const whileEl = document.querySelector(&#039;#while .output&#039;);
+////get a random number between 0-100
+let amount = Math.round(Math.random() * 100);
+while(amount &lt;= 50){
+	//get a random amount from 0-10
+	rand = Math.round(Math.random() * 10);
+	whileEl.insertAdjacentHTML(&#039;beforeend&#039;, `The amount is currently ${amount} &lt;br&gt;`);
+	amount += rand;	
+}	
+</code></pre>
+		<p class="output"></p>
+	</section>
+	<section id="do-while">
+		<h2>Do While Loop</h2>
+		<blockquote>
+			Do While loops are just like While loops, except they always run at least once, even if the condition is not met.   if the amount starts higher than 50, one line will output.
+		</blockquote>
+		<pre><code class="language-javascript">const doWhileEl = document.querySelector(&#039;#do-while .output&#039;);
+amount = Math.round(Math.random() * 100);
+do{
+	//get a random amount from 0-10
+	rand = Math.round(Math.random() * 10);
+	doWhileEl.insertAdjacentHTML(&#039;beforeend&#039;, `The amount is currently ${amount} &lt;br&gt;`);
+	amount += rand;	
+}while(amount &lt;= 50);	
+</code></pre>
+		<p class="output"></p>
+	</section>
+<script type="text/javascript">
+	const forEl = document.querySelector('#for .output');
+	const forEachEl = document.querySelector('#for-each .output');
+	const whileEl = document.querySelector('#while .output');
+	const doWhileEl = document.querySelector('#do-while .output');
+
+	//for is good for loops that run a certain number of iterations
+	//generate 5 random numbers
+	for (var i = 0; i <= 5; i++) {
+		let rand = Math.round( Math.random() * 10 ) ;
+		forEl.insertAdjacentHTML('beforeend', `The for loop is on iteration ${i}, The random number is ${rand}<br>`);			
+	}
+
+	//foreach is especially for going through an array until you run out of items in the array
+	//show all the names of all the players in the list
+	allPlayers = ['Alfonso', 'Georgia', 'Barry', 'Soleil', 'Terry', 'Cynthia'];
+
+	allPlayers.forEach(function(person) {
+	   forEachEl.insertAdjacentHTML('beforeend', `<li>${person}</li>`);	
+	});
+	// for (player of allPlayers) {
+	// 	console.log(player);
+	// }
+
+	//while is for conditions that will eventually be met
+	//keep adding a random amount until we hit 50. A while loop will do nothing if the condition is not met. if the amount starts higher than 50, nothing will output!
+	////get a random number between 0-100
+	let amount = Math.round(Math.random() * 100);
+	while(amount <= 50){
+		//get a random amount from 0-10
+		rand = Math.round(Math.random() * 10);
+		whileEl.insertAdjacentHTML('beforeend', `The amount is currently ${amount} <br>`);
+		amount += rand;	
+	}
+	//do while is for conditions that will eventually be met
+	//the loop will always run at leasat once, even if the condition is not initially met. 
+	amount = Math.round(Math.random() * 100);
+	do{
+		//get a random amount from 0-10
+		rand = Math.round(Math.random() * 10);
+		doWhileEl.insertAdjacentHTML('beforeend', `The amount is currently ${amount} <br>`);
+		amount += rand;	
+	}while(amount <= 50);
+
+
+</script>
+	<script>hljs.highlightAll();</script>
+</body>
+</html>

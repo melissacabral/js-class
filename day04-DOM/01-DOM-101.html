@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>DOM Manipulation with JS</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css" integrity="sha512-xiunq9hpKsIcz42zt0o2vCo34xV0j6Ny8hgEylN3XBglZDtTZ2nwnqF/Z/TTCc18sGdvCjbFInNd++6q3J0N6g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	 <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/styles/atom-one-light.min.css">
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/highlight.min.js"></script>
+	<style type="text/css">
+		body{
+			max-width: 800px;
+			margin: 0 auto;
+		}
+		section{
+			min-height: 90vh;
+			padding: 3%;
+		}
+		.note{
+			background-color: #FFFBE3;
+			padding: 1em;
+			margin: 1em 0;
+		}
+		.output{
+			outline:  dashed 1px #D8D8D8;
+			padding: .3em .5em;
+		}
+		.box{
+			outline: dashed 1px #D8D8D8;
+			padding: .3em .5em;
+			margin: .3em;
+
+		}
+	</style>
+</head>
+<body>
+
+	<section id="overview">
+	<h1>DOM Manipulation with JavaScript</h1>
+
+		<h2>The DOM and the Browser</h2>
+		<blockquote>
+			<p>The Document Object Model specifies how browsers should create a model of an HTML page and how JavaScript can access and update the contents of a web page while it is in the browser window.</p>
+			<p>
+The DOM allows us to create, change, or remove elements from the document using JS. 
+</p>
+<p><b>Right-click and Inspect</b> the List items below to see the DOM tree in the browser inspector. </p>
+		</blockquote>
+		<ul class="example-one">
+			<li class="item">The First List Item</li>
+			<li class="item">Second Item
+			<ul>
+				<li class="item child-item">Child Item 1</li>
+				<li class="item child-item">Child Item 2</li>
+			</ul>
+		</li>
+		</ul>
+	</section>
+	<section>
+		<h2>What is a Node?</h2>
+		<p>Every object located within a document is a node of some kind. In an HTML document, an object can be an element node but also a text node or attribute node.</p>
+		<pre><code class="language-html">&lt;div class=&quot;bananas&quot;&gt;This Div is Bananas&lt;/div&gt;</code></pre>
+		<ul>
+			<li>The &lt;div&gt; is an HTML element node</li>
+				<li>the class is an attribute node</li>
+				<li>The text is a text node</li>
+		</ul>
+	</section>
+
+	<section id="selecting">
+		<h2>Selecting Elements</h2>
+		<p>A typical first task is to "select" the element you need to work on.</p>
+		<p>Try running any of these lines of code in the console</p>
+		<pre><code class="language-javascript">// Returns the element that has the ID attribute with the specified value
+document.getElementById('overview');
+
+// Returns an HTMLCollection containing all elements with the specified class name
+document.getElementsByClassName('item');
+
+// Returns an live NodeList containing all elements with the specified name
+document.getElementsByName('phone-number');
+
+// Returns an HTMLCollection containing all elements with the specified tag name
+document.getElementsByTagName('li');
+
+// Returns the first element that matches a specified CSS selector(s) in the document
+document.querySelector('.example-one .item');
+
+//Returns a static NodeList containing all elements that matches a specified CSS selector(s) in the document
+document.querySelectorAll('.example-one .item')</code></pre>
+		
+	</section>
+
+	<section id="manipulation">
+		<h2>DOM Manipulation</h2>
+		<p>Whenever we add to or subtract from, change the order or change the attributes of an element we are performing DOM Manipulation</p>
+		<p>practical examples:</p>
+		<ul>
+			<li>Changing style properties</li>
+			<li>Changing the value or content of an element</li>
+			<li>A to-do list that allows you to move items to the top of the list or remove them when you check them off</li>
+			<li>a comment form that instantly adds a comment to the page</li>
+		</ul>
+	</section>
+	<section id="remove">
+		<h2>Removing elements</h2>
+		<p>Simply select the element and use the remove() method</p>
+		<blockquote>Try this code in the console:</blockquote>
+		
+<pre><code class="language-javascript">const element = document.getElementById('div-02');
+element.remove()</code></pre>
+		<div id="div-01" class="box">Here is div-01</div>
+		<div id="div-02" class="box">Here is div-02</div>
+		<div id="div-03" class="box">Here is div-03</div>
+
+	</section>
+	<section id="create">
+		<h2>Creating Elements</h2>
+		<p>You can create any HTML element node with createElement()</p>
+		<p>The code below will create a new empty paragraph</p>
+		<pre><code class="language-javascript">const myParagraph = document.createElement("p");</code></pre>
+		<p>The created element will not automatically be added to the DOM tree. It needs to be appended to the document somehow. AppendChild is one method: </p>
+		<pre><code class="language-javascript">document.body.appendChild(myParagraph);</code></pre>
+		<p>That paragraph is still empty! you can add  text inside of it:</p>
+		<pre><code class="language-javascript">myParagraph.innerText = "This is a paragraph.";
+</code></pre>
+	</section>
+
+	<section>
+		<h2>Example - Creating an element</h2>
+		<p>Let’s say we have a chat application, and we want to append a user, Dale, to a buddy list when they log in.</p>
+		<ul id="buddies">
+		  <li><a>Alex</a></li>
+		  <li><a>Barry</a></li>
+		  <li><a>Clive</a></li>
+		</ul>
+		<pre><code class="language-html">&lt;!-- HTML Buddy List --&gt;
+&lt;ul id=&quot;buddies&quot;&gt;
+  &lt;li&gt;&lt;a&gt;Alex&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a&gt;Barry&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a&gt;Clive&lt;/a&gt;&lt;/li&gt;
+  &lt;!-- Append next user here --&gt;
+&lt;/ul&gt;</code></pre>
+<p>Add a new &lt;li&gt; using appendChild(). Try this in the console and check the list above!</p>
+<pre><code class="language-javascript">const new_buddy = document.createElement('li')
+const new_link = document.createElement('a')
+
+
+new_link.textContent = "Dale"
+new_buddy.appendChild(new_link) // Node param
+
+const list = document.querySelector('#buddies')
+list.appendChild(new_buddy) // Node param</code></pre>
+
+
+		
+	</section>
+	<section>
+		<h2>Choosing the best way to create elements</h2>
+		<p class="note">There are many ways to append nodes to the DOM tree. Check out <a href="https://css-tricks.com/comparing-methods-for-appending-and-inserting-with-javascript/">this excellent comaprison from CSS Tricks with code examples</a></p>
+		<pre><code class="language-javascript">list.append(new_buddy);
+list.appendChild(new_buddy);
+list.insertAdjacentHTML('beforeend', new_buddy);
+list.innerHTML += new_buddy;</code></pre>
+		
+		<h3>Takeaways:</h3>
+		<blockquote>
+			If I had to condense all of that into a few recommendations:<br><br>
+
+Using innerHTML for appending is not recommended as it removes event listeners.<br>
+append works well if you like the flexibility of working with node elements or plain text, and don’t need to support Internet Explorer.<br>
+appendChild works well if you like (or need) to work with node elements, and want full browser coverage.<br>
+insertAdjacentHTML is nice if you need to generate HTML, and want  more specific control over where it is placed in the DOM.
+
+		</blockquote>
+	</section>
+	
+	<script>hljs.highlightAll();</script>
+</body>
+</html>

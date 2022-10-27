@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Changing css classes</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css" integrity="sha512-xiunq9hpKsIcz42zt0o2vCo34xV0j6Ny8hgEylN3XBglZDtTZ2nwnqF/Z/TTCc18sGdvCjbFInNd++6q3J0N6g=="
+	 crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<style type="text/css">
+		body {
+			background-size: cover;
+			min-height: 100vh;
+			display: grid;
+			align-items: center;
+			overflow:hidden;
+			transition: background .5s ease-in;
+		}
+		.container {
+			background-color: rgba(255, 255, 255, .8);
+			padding: 2em;
+			border-radius: 1em;
+			width: 90%;
+			max-width: 900px;
+		}
+		/*gradient simulation*/
+		.container:after {
+			pointer-events: none;
+			display:block;
+			content:'';
+			position: fixed;
+			top:0;
+			left:0;
+			width: 100%;
+			height: 100vh;
+			background: -webkit-linear-gradient(to top, #ffffff, #000000);
+			/* Chrome 10-25, Safari 5.1-6 */
+			background: linear-gradient(to top, #ffffff, #000000);
+			/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+			mix-blend-mode: overlay;
+		}
+		.daytime {
+			background-color: #3dbff1;
+		}
+		.nighttime {
+			background-color: #2C5364
+		}
+		.sun, .moon{
+			background-color:#fdd700;
+			width:200px;
+			height:200px;
+			border-radius:9999em;
+			position:absolute;
+			z-index:0;
+			top:110vh; /*push below the screen edge*/
+			right:10vw;
+			box-shadow: 0 0 200px rgba(255, 255, 255, .9);
+			transition: top .5s ease-in-out;
+		}
+		.moon{				
+			right:10vw;
+			margin: 2rem;
+			background-color: transparent;
+			box-shadow: inset -75px -50px 0 3px #ffffff;
+			border-radius: 50%;
+		}
+		.daytime .sun{
+			top:10vh;
+		}
+		.nighttime .moon{
+			top:10vh;
+		}
+		
+
+	</style>
+</head>
+
+<body class="daytime">
+	<div class="container">
+		<h1>Changing Classes with JS</h1>
+		<p>Best practices say we should do as much as we can with CSS for appearance and animation, and for anything CSS can't control alone, enhance with JavaScript</p>
+
+		<p>This demo will change from day to night depending on time of day</p>
+		<p>Pressing this button will override the default</p>
+		<button id="changeNight">Change to Nighttime</button>
+		<button id="changeDay">Change to Daytime</button>
+	</div>
+
+	<div class="sun"></div>
+	<div class="moon"></div>
+
+	<script type="text/javascript">
+		//when a button is clicked, change the body class
+		//night button
+		document.getElementById('changeNight').addEventListener( "click", () => {
+			document.body.classList.replace( "daytime", "nighttime" );
+		} );
+		//day button
+		document.getElementById('changeDay').addEventListener( "click", () => {
+			document.body.classList.replace( "nighttime", "daytime" );
+		} );
+	</script>
+</body>
+</html>
