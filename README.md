@@ -6,4 +6,4 @@ WS300 Javascript For Designers
 Heading 2
 ----
 
-(linky)[http://github.com]
+[linky](http://github.com)
