@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>	card flip</title>
+	<style type="text/css">
+		body {
+	perspective: 800px;
+}
+.front {
+	background-color: orchid;
+	width: 250px;
+	height: 250px;
+	text-align: center;
+	line-height: 250px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	backface-visibility: hidden;
+	border-radius: 40px;
+	overflow: hidden;
+}
+
+.back {
+	background-color: cyan;
+	width: 250px;
+	height: 250px;
+	text-align: center;
+	line-height: 250px;
+	position: absolute;
+	top: 0;
+	left: 0px;
+	z-index: 0;
+	transform: rotateY(180deg);
+	backface-visibility: hidden;
+	border-radius: 40px;
+}
+
+.card {
+	width: 250px;
+	height: 250px;
+	position: relative;
+	cursor: pointer;
+	transform-style: preserve-3d;
+	transition: all 0.4s cubic-bezier(0.53,-0.56, 0.61, 1.68);
+}
+
+.flipped {
+	transform: rotateY(180deg);
+}
+	
+
+	</style>		
+
+</head>
+<body>
+	<div class="card">
+		<div class="front">
+			<img src="https://picsum.photos/250/250?image=0" alt="">
+		</div>
+		<div class="back">This is a laptop</div>
+	</div>
+	<script type="text/javascript">
+		//when the card is clicked
+const card = document.querySelector(".card");
+card.addEventListener("click", () => {
+	card.classList.toggle("flipped");
+});
+
+	</script>
+</body>
+</html>

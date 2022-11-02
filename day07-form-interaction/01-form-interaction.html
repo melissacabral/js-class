@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css" integrity="sha512-xiunq9hpKsIcz42zt0o2vCo34xV0j6Ny8hgEylN3XBglZDtTZ2nwnqF/Z/TTCc18sGdvCjbFInNd++6q3J0N6g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<title>Interacting with Forms</title>
+	<style type="text/css">
+		.container{
+			max-width: 600px;
+		}
+		input.auto-advance{
+			display: inline-block;
+			width: 3em;
+		}
+		.hidden{
+			display: none;
+		}
+		textarea{
+			transition: all .3s ease;
+		}
+		textarea.error{
+			border:solid 1px  red;
+			background-color: #FFCFCF;
+		}
+		textarea.warn{
+			border:solid 1px  orange;
+			background-color: #FFF4DB;
+		}
+		
+	</style>
+</head>
+<body>
+<div class="container">
+	<h1>Interactive Form Controls</h1>
+	<p>Here are several examples of controling various form input events, methods and properties. View the source code for the scripts that control the following examples:</p>
+	<form id="my-form" action="example-action.html" method="post">
+		<label for="focus-me">Auto Focus</label>
+		<span class="hint">This field will immediately autofocus using <code>input.focus()</code> method</span>
+		<input type="search" name="autofocus" id="focus-me">
+
+		<hr>
+
+		<label for="count-me">Character Counter</label>
+		<span class="hint">This field has a limit of 150 characters. You can count the characters with the <code>input.value.length</code> properties</span>
+		<textarea name="counted" id="count-me">This is pre-filled with some text already so you don't have to type so much later when we test it in the browser!</textarea>
+		<span id="character-count-output"></span>
+
+		<hr>
+
+		<label for="password">Show Password Field</label>
+		<span class="hint">You can change <code>input.type = 'password'</code> to <code>input.type = 'text'</code> when the box is checked</span>
+		<input type="password" name="password" id="password" value="secret password 123">
+
+		<label>
+			<input type="checkbox" id="show-password">
+			Show Password
+		</label>
+
+		<hr>
+
+		<label for="auto-advance">Auto Advance</label>
+		<span class="hint">This exercise combines counting <code>value.length</code> on each input as well as <code>focus()</code> and <code>blur()</code> methods. it can handle as many fields (digits) as you need just by adding more inputs. </span>
+		<fieldset id="auto-advance">
+			<input type="tel" name="number[]" class="auto-advance" maxlength="1">
+			<input type="tel" name="number[]" class="auto-advance" maxlength="1">
+			<input type="tel" name="number[]" class="auto-advance" maxlength="1">
+			<input type="tel" name="number[]" class="auto-advance" maxlength="1">
+		</fieldset>
+
+		<hr>
+		<label>Conditional Inputs</label>
+		<span class="hint">It's easy to show/hide options by checking the value of <code>input.checked</code>. In this basic example, we're just toggling the <code>.hidden</code> class on the container of the <code>select</code> element</span>
+		<label>
+			<input type="checkbox" name="conditional-check" id="conditional-check"> Yes! When I check this box, show more options. 
+		</label>
+		<div id="conditional-options" class="hidden">
+			<label>An option that only shows up if checked</label>
+			<select name="conditional">
+				<option>No option chosen</option>
+				<option value="1">First Option</option>
+				<option value="2">second Option</option>
+				<option value="3">third Option</option>
+				<option value="4">fourth Option</option>
+			</select>
+		</div>
+
+	</form>
+</div> <!-- end .container -->
+
+
+<script type="text/javascript">
+	//AUTOFOCUS
+	const focusMe = document.getElementById('focus-me');
+	focusMe.focus();
+
+	//CHARACTER COUNT
+	const countMe = document.getElementById('count-me');
+	const countOutputEl = document.getElementById('character-count-output');
+
+	//when the text in the box changes, update the counter
+	countMe.addEventListener('input', updateCounter);
+	countMe.addEventListener('focus', updateCounter);
+
+	function updateCounter(e){
+		let charCount = e.target.value.length;
+		let remaining = 150 - charCount;
+		countOutputEl.innerHTML = `${charCount} Characters. <b class="remain">${remaining} Characters remaining.</b>`;
+		//if we're approaching the limit, warn the user
+		if( remaining <= 0 ){
+			countMe.className = 'error';
+		}else if( remaining <= 15 ){
+			countMe.className = 'warn';
+		}		
+	}
+
+	//SHOW PASSWORD (change input type)
+	const passwordEl = document.getElementById('password');
+	const showPassEl = document.getElementById('show-password');
+	
+	//listen for the checkbox to change
+	showPassEl.addEventListener( 'change', function(e){
+		if( showPassEl.checked ){
+			passwordEl.type = 'text';
+		}else{
+			passwordEl.type = 'password';
+		}
+	} );
+
+	//AUTO ADVANCE
+	//get all the inputs
+	const autoInputs = document.querySelectorAll('.auto-advance');
+	for( let input of autoInputs ){
+		//listen for the keyboard press
+		input.addEventListener('keyup', function(e){
+			//if we typed 1 character in the box, move to the next input
+			if( e.currentTarget.value.length == 1){
+				let nextInput = e.currentTarget.nextElementSibling;
+				//if it has a next sibling that is an auto-advance field
+				if( nextInput && nextInput.classList.contains('auto-advance')){
+					nextInput.focus();
+				}else{
+					//last box! exit the field
+					e.currentTarget.blur();
+				}
+			}
+		});
+	}
+
+	//CONDITIONAL INPUTS
+	//listen for the checkbox to change
+	const checkboxEl = document.getElementById('conditional-check');
+	const conditionalOptions = document.getElementById('conditional-options');
+
+	checkboxEl.addEventListener( 'change', function(e){
+		if( e.target.checked ){
+			conditionalOptions.classList.remove('hidden');
+		}else{
+			conditionalOptions.classList.add('hidden');
+		}
+	} );
+
+</script>
+</body>
+</html>
