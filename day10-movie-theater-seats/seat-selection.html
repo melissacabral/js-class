@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seat Selection</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css" integrity="sha512-xiunq9hpKsIcz42zt0o2vCo34xV0j6Ny8hgEylN3XBglZDtTZ2nwnqF/Z/TTCc18sGdvCjbFInNd++6q3J0N6g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style type="text/css">
+	#theater{
+		background-color: black;
+		color: white;
+		padding: 2em;
+		width: 70em;
+		margin: auto;
+	}
+	.screen{
+		background-color: #DADADA;
+		color: black;
+		width: 50em;
+		height: 3em;
+		line-height: 3em;
+		margin: 0 auto 4em;
+		transform: perspective(70px) rotateX(340deg) ;
+		text-align: center;
+	}
+	#theater .row{
+		display: flex;
+		flex-wrap: nowrap;
+		gap: 10px;
+		justify-content: center;
+		margin-bottom: 10px;
+	}
+	.seat{
+		background-color: #939393;
+		width: 3em;
+		height: 3em;
+		line-height: 3em;
+		text-align: center;
+	}
+	.seat.accessible{
+		background-color: #0079CD;
+	}
+	.seat.taken{
+		background-color: #5C5C5C;
+	}
+	.active .seat:not(.taken){
+		cursor: pointer;  /*finger*/
+	} 
+	.active .seat:not(.taken):hover{
+		background-color: #eee;
+	}
+	.seat.your-selection{
+		background-color: #499D55;
+	}
+	.description{
+		max-width: 50em;
+		margin: 1em auto;
+	}
+</style>
+</head>
+<body class="active">
+<div id="theater" >
+	<div class="screen">Screen</div>
+
+	<div class="row">
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat taken"></div>
+		<div class="seat taken"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+	</div>
+	<div class="row">
+		<div class="seat accessible"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat accessible"></div>
+	</div>
+	<div class="row">
+		<div class="seat accessible"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat accessible"></div>
+	</div>
+	<div class="row">
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+	</div>
+	<div class="row">
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+	</div>
+	<div class="row">
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+	</div>
+</div>
+
+<div class="description">
+	<h1>Movie theater seat selection screen</h1>
+	<ol>
+		<li>Display the row and seat number dynamically on each seat</li>
+		<li>When a user clicks on a chosen seat, change the appearance to look "taken"</li>
+		<li>Allow the user to select seats in a block (2, 3, more?) depending on how many tickets they are buying</li>
+		<li>Allow the user to change their mind and move their seats (clear selection?)</li>
+		<li>When the user has selected all their seats, tell them they can move forward to the next screen and confirm their seats</li>
+	</ol>
+</div>
+
+<script type="text/javascript">
+	//task 1: Display the row and seat number dynamically on each seat
+	//get all the rows
+	const rows = document.querySelectorAll('.row');
+	//set of alpha characters for the rows
+	const rowLetters = 'abcdef';
+
+	//task 3: allow the user to buy "3" seats
+	const numberOfTickets = 3;
+	let numberOfSeatsTaken = 0;
+	let selectedSeatNumbers = [];
+
+	const theaterEl = document.getElementById('theater');
+
+	//task 5: give the user feedback
+	const outputEl = document.createElement('div');
+	outputEl.classList.add('output-message');
+	outputEl.innerHTML = `<h3>Choose ${numberOfTickets} Seats.</h3>`;
+	theaterEl.appendChild( outputEl );
+
+	rows.forEach( (row, i) => {
+		let rowLetter = rowLetters.charAt(i).toUpperCase();
+		row.insertAdjacentHTML( 'afterbegin', `<div class="letter">${rowLetter}</div>` );
+		row.insertAdjacentHTML( 'beforeend', `<div class="letter">${rowLetter}</div>` );
+
+		//get all the seats in this row
+		const seats = row.querySelectorAll('.seat');
+		//put the number and letter on each seat
+		seats.forEach( (seat, i) => {
+			let seatNumber = i + 1;
+			let seatLabel = rowLetter + seatNumber;
+			seat.innerHTML = seatLabel;
+			seat.setAttribute('data-seat', seatLabel);
+			//task 2: when the user clicks a seat, mark it "taken"
+			seat.addEventListener('click', (e) => {
+				//make sure it's not taken
+				if( ! seat.classList.contains('taken') ){
+					seat.classList.add('taken');						
+					seat.classList.add('your-selection');	
+					//task 3: count the number of seats taken
+					numberOfSeatsTaken ++ ;
+					//add their selection to the list (data-seat="A6")
+					selectedSeatNumbers.push(seat.dataset.seat);
+					//have they used up all their choices yet?	
+					if( numberOfSeatsTaken == numberOfTickets ){
+						outputEl.innerHTML = `<h3>Selected Seats: ${selectedSeatNumbers}</h3> 
+							<button id="continue">Continue to Checkout</button>
+							<button id="reset" class="button-outline">Reset</button>`;
+						//done! remove the event listener on the seats
+						//cloning all the child nodes of the theater is the fastest way to do this!
+						theaterEl.replaceWith(theaterEl.cloneNode(true));
+						document.body.classList.remove('active');
+						//listen for the reset button
+						document.getElementById('reset').addEventListener('click', refreshPage);						
+					}				
+				}
+			} );
+		} ); /*end forEach seat*/
+	} ); /*end forEach row*/
+
+	//TODO: this function is broken and abandoned. fix it
+	function reset(){
+		console.log('reset');
+		//put the active class on body
+		document.body.classList.add('active');
+		//remove the class 'your-selection' from any seats
+		const selectedSeats = document.querySelectorAll('.your-selection');
+		selectedSeats.forEach( (seat) => { 
+			seat.classList.remove('your-selection'); 
+			seat.classList.remove('taken'); 
+		} );
+		//reset the variables 
+		selectedSeatNumbers = [];
+		numberOfSeatsTaken = 0;
+		//reset the feedback message
+		const outputEl = document.querySelector('.output-message');
+		outputEl.innerHTML = `<h3>Choose ${numberOfTickets} Seats.</h3>`;
+		//TODO! find a better way to remove the event listener (see line 236 - cloneNode) so that we don't have to re-create everything on reset
+	}
+
+	//BUGFIX: refresh the whole page on reset
+	function refreshPage(){
+		window.location.reload();
+	}
+</script>
+</body>
+</html>

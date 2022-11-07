@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seat Selection</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css" integrity="sha512-xiunq9hpKsIcz42zt0o2vCo34xV0j6Ny8hgEylN3XBglZDtTZ2nwnqF/Z/TTCc18sGdvCjbFInNd++6q3J0N6g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style type="text/css">
+	#theater{
+		background-color: black;
+		color: white;
+		padding: 2em;
+		width: 70em;
+		margin: auto;
+	}
+	.screen{
+		background-color: #DADADA;
+		color: black;
+		width: 50em;
+		height: 3em;
+		line-height: 3em;
+		margin: 0 auto 4em;
+		transform: perspective(70px) rotateX(340deg) ;
+		text-align: center;
+	}
+	#theater .row{
+		display: flex;
+		flex-wrap: nowrap;
+		gap: 10px;
+		justify-content: center;
+		margin-bottom: 10px;
+	}
+	.seat{
+		background-color: #939393;
+		width: 3em;
+		height: 3em;
+		line-height: 3em;
+		text-align: center;
+	}
+	.seat.accessible{
+		background-color: #0079CD;
+	}
+	.seat.taken{
+		background-color: #5C5C5C;
+	}
+	.active .seat:not(.taken){
+		cursor: pointer;  /*finger*/
+	} 
+	.active .seat:not(.taken):hover{
+		background-color: #eee;
+	}
+	.seat.your-selection{
+		background-color: #499D55;
+	}
+	.description{
+		max-width: 50em;
+		margin: 1em auto;
+	}
+</style>
+</head>
+<body>
+<div id="theater" >
+	<div class="screen">Screen</div>
+
+	<div class="row">
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat taken"></div>
+		<div class="seat taken"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+	</div>
+	<div class="row">
+		<div class="seat accessible"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat accessible"></div>
+	</div>
+	<div class="row">
+		<div class="seat accessible"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat accessible"></div>
+	</div>
+	<div class="row">
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat taken"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+	</div>
+	<div class="row">
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat taken"></div>
+		<div class="seat taken"></div>
+		<div class="seat taken"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+	</div>
+	<div class="row">
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat taken"></div>
+		<div class="seat taken"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+		<div class="seat"></div>
+	</div>
+	<div id="output-message"></div>
+</div>
+
+<div class="description">
+	<h1>Movie theater seat selection screen</h1>
+	<ol>
+		<li>Display the row and seat number dynamically on each seat</li>
+		<li>When a user clicks on a chosen seat, change the appearance to look "taken"</li>
+		<li>Allow the user to select seats in a block (2, 3, more?) depending on how many tickets they are buying</li>
+		<li>Allow the user to change their mind and move their seats (clear selection?)</li>
+		<li>When the user has selected all their seats, tell them they can move forward to the next screen and confirm their seats</li>
+	</ol>
+</div>
+
+<script type="text/javascript">
+	//pre-define any variables and container elements
+	const theaterEl = document.getElementById('theater');
+	const rows = document.querySelectorAll('.row');
+	const rowLetters = 'abcdef';
+	let numberOfTickets, numberOfSeatsTaken, selectedSeatNumbers;	
+
+	//add the container for the labels
+	rows.forEach( (row, i) => {
+		row.insertAdjacentHTML( 'afterbegin', `<div class="letter"></div>` );
+	} );
+
+	//initialize the screen. this can also be used to 'reset' later
+	init();	
+
+	function init(){
+		document.body.classList.add('active');
+		numberOfTickets = 3;
+		numberOfSeatsTaken = 0;
+		selectedSeatNumbers = [];
+
+		rows.forEach((row, i) => {
+			let rowLetter = rowLetters.charAt(i).toUpperCase();
+			const rowLabelEl = row.querySelector('.letter');
+			rowLabelEl.innerHTML = rowLetter;
+			setupRow(rowLetter, row);
+		})
+		
+		updateFeedback(`<h3>Choose ${numberOfTickets} Seats.</h3>`);
+
+		const selectedSeats = document.querySelectorAll('.your-selection');
+		if(selectedSeats.length > 0){
+			selectedSeats.forEach( (seat) => { 
+				seat.classList.remove('your-selection'); 
+				seat.classList.remove('taken'); 
+			} );
+		}
+	}
+
+	function setupRow(letter, rowEl){
+		//get all the seats in this row		
+		const seats = rowEl.querySelectorAll('.seat');
+		//put the number and letter on each seat
+		seats.forEach( (seat, i) => {
+			let seatNumber = i + 1;
+			let seatLabel = letter + seatNumber;
+			seat.innerHTML = seatLabel;
+			seat.setAttribute('data-seat', seatLabel);
+			
+		} ); /*end forEach seat*/
+	}
+
+	function seatClick(seatEl){
+		//make sure we have tickets left to get seats for
+		if(numberOfSeatsTaken == numberOfTickets){
+			return;
+		}
+		//make sure it's not taken
+		if(  seatEl.classList.contains('taken') ){
+			return;
+		}
+		seatEl.classList.add('taken');						
+		seatEl.classList.add('your-selection');	
+		//task 3: count the number of seats taken
+		numberOfSeatsTaken ++ ;``
+		//add their selection to the list (data-seat="A6")
+		selectedSeatNumbers.push(seatEl.dataset.seat);
+
+		//have they used up all their choices yet?	
+		if( numberOfSeatsTaken == numberOfTickets ){
+			updateFeedback(`<h3>Selected Seats: ${selectedSeatNumbers}</h3> 
+				<button id="continue">Continue to Checkout</button>
+				<button id="reset" class="button-outline">Reset</button>`);
+			//done! remove the event listener on the seats
+			//cloning all the child nodes of the theater is the fastest way to do this!
+			theaterEl.replaceWith(theaterEl.cloneNode(true));
+			document.body.classList.remove('active');				
+		}						
+	}
+
+	function updateFeedback( message = 'Choose Seats'){
+		const outputEl = document.getElementById('output-message')
+		outputEl.innerHTML = `<h3>${message}</h3>`;
+	}
+
+	//listen for any and all clicks
+	document.addEventListener('click',(e) =>{
+		//SEAT
+		if (e.target.matches('.seat')) {
+			seatClick(e.target);
+		}
+		//RESET
+		if(e.target.matches('#reset')){
+			init();
+		}		
+	}); 
+
+</script>
+</body>
+</html>
