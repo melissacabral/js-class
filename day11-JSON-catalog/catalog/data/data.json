@@ -1,0 +1,38 @@
+[
+	{
+		"id" 			: "0001",
+		"name" 			: "Beanie",
+		"description" 	: "A warm beanie",
+		"price"			: 24.50,
+		"salePrice"		: 18,
+		"image" 		: "beanie.jpg",
+		"categories"	: ["accessories", "hats"]
+	},
+	{
+		"id" 			: "0002",
+		"name" 			: "Beanie with Logo",
+		"description" 	: "A warm beanie with a smiley face logo",
+		"price"			: 34.50,
+		"salePrice"		: false,
+		"image" 		: "beanie-with-logo.jpg",
+		"categories"	: ["accessories", "hats", "logo"]
+	},
+	{
+		"id" 			: "0003",
+		"name" 			: "Hoodie with Logo",
+		"description" 	: "A warm Hoodie with a smiley face logo",
+		"price"			: 54.50,
+		"salePrice"		: false,
+		"image" 		: "hoodie-with-logo.jpg",
+		"categories"	: ["tops", "hoodies", "logo"]
+	},
+	{
+		"id" 			: "0004",
+		"name" 			: "Sunglasses",
+		"description" 	: "basic sun protection",
+		"price"			: 20,
+		"salePrice"		: 18,
+		"image" 		: "sunglasses.jpg",
+		"categories"	: ["accessories"]
+	}
+]
