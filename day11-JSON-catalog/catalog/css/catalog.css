@@ -3,16 +3,23 @@ body{
 	margin: 1em auto;
 }
 #container{
-	display: grid;
-	grid-gap:1em;
-	grid-template-columns: repeat(4, 23%);
+	display: flex;
+	justify-content: left;
+  align-items: center;
+  flex-wrap: wrap;
+
+	
 }
 .product{		
 	border: solid 1px #eee;
 	border-radius: 1em;
 	padding: 1em;
+	margin-right: 1em;
+	margin-bottom: 1em;
 	position: relative;
 	background-color: #eaeff3;
+	flex-basis: 1; 
+	
 }
 .product img{
 	margin: 0 auto;
@@ -45,7 +52,7 @@ body{
 	color: #A31010;
 	font-weight: bold;
 }
-.add-to-cart{
+.add-to-wishlist{
 	width: 100%;
 	display: inline-block;
 }
@@ -53,12 +60,12 @@ body{
 /* gets the actual input out of the way; 
 we're going to style the label instead */ 
 
-#cart-toggle { 
+#drawer-toggle { 
 position: absolute; 
 opacity: 0; 
 }
 
-#cart-toggle-label { 
+#drawer-toggle-label { 
 user-select: none; 
 right: 0px; 
 top: 0px;
@@ -71,9 +78,9 @@ transition: background  .25s ease-in-out;
 } 
 
 
-/* cart menu pane  */ 
+/* drawer menu pane  */ 
 
-#cart { 
+#drawer { 
 position: fixed; 
 top: 0; 
 right:-300px; 
@@ -89,23 +96,23 @@ transition: .25s ease-in-out;
 
 /* checked styles (menu open state) */ 
 
-#cart-toggle:checked ~ #cart-toggle-label { 
+#drawer-toggle:checked ~ #drawer-toggle-label { 
 height: 100%; 
 width: calc(100%); 
 background: rgba(255,255,255,.8); 
 z-index: 0;
 color: transparent;
 } 
-#cart-toggle:checked ~ #cart-toggle-label #qty{
+#drawer-toggle:checked ~ #drawer-toggle-label #qty{
 	display: none;
 }
 
-#cart-toggle:checked ~ #cart-toggle-label, 
-#cart-toggle:checked ~ header { 
+#drawer-toggle:checked ~ #drawer-toggle-label, 
+#drawer-toggle:checked ~ header { 
 right: 0px; 
 } 
 
-#cart-toggle:checked ~ #cart { 
+#drawer-toggle:checked ~ #drawer { 
 right: 0px; 
 } 
 
@@ -113,21 +120,21 @@ right: 0px;
 
 /* Menu item styles */ 
 
-#cart ul { 
+#drawer ul { 
 list-style-type:none; 
 } 
 
-#cart ul a { 
+#drawer ul a { 
 display:block; 
 padding:10px; 
 color:#c7c7c7; 
 text-decoration:none; 
 } 
 
-#cart ul a:hover { 
+#drawer ul a:hover { 
 color:white; 
 } 
-#cart .cart-price{
+#drawer .drawer-price{
 	float: right;
 }
 
@@ -146,23 +153,65 @@ color:white;
 
 @media all and (max-width:350px) { 
 
-	#cart-toggle:checked ~ #cart-toggle-label { 
+	#drawer-toggle:checked ~ #drawer-toggle-label { 
 	height: 100%; 
 	width: 50px; 
 	} 
 
-	#cart-toggle:checked ~ #cart-toggle-label, 
-	#cart-toggle:checked ~ header { 
+	#drawer-toggle:checked ~ #drawer-toggle-label, 
+	#drawer-toggle:checked ~ header { 
 	left: calc(100% - 50px); 
 	} 
 
-	#cart-toggle:checked ~ #cart { 
+	#drawer-toggle:checked ~ #drawer { 
 	width: calc(100% - 50px); 
 	padding: 20px; 
 	} 
 
-	#cart-toggle:checked ~ #page-content { 
+	#drawer-toggle:checked ~ #page-content { 
 	margin-left: calc(100% - 50px); 
 	} 
 
+}
+/* https://codepen.io/vskand/pen/MWKKKYK?editors=1010 */
+
+.hide { /* You can play with the seconds to change the "animation" */
+  animation: hide .4s ease-in-out 0s 1 normal forwards;
+  transform-origin: center;
+}
+.show { /* You can play with the seconds to change the "animation" */
+    animation: show .4s ease-in-out 0s 1 normal forwards;    
+    transform-origin: center;
+}
+button{
+	transition: background .3s ease-in;
+}
+button.filter.active{
+	background-color: #eee;
+}
+@keyframes hide {
+  0%{    
+    opacity: 1; 
+  } 
+  100% {
+    transform: scale(0);        
+    opacity: 0;
+    width: 0;
+    margin: 0;
+    padding: 0;
+  }
+}
+@keyframes show {
+  0%{
+    transform: scale(0);  
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1); 
+    opacity: 1; 
+    width: 25%;  
+    margin: .5em;
+    padding: 1em;
+
+  }
 }
