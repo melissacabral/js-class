@@ -9,8 +9,8 @@ let productHTML = '';
 let wishlistQuantity = 0;
 let wishlistContents = [];
 
-
-
+//get the unique categories for the filter buttons
+let uniqueCategories = [];
 
 //draw the catalog from the data
 for( let product of catalog ){	
@@ -32,14 +32,22 @@ for( let product of catalog ){
 	//only show the sale price if on sale
 	if(product.salePrice){			
 		productHTML += `<span class="sale-price">\$${product.salePrice.toFixed(2)}</span>`;
-	}
-		
+	}		
 	productHTML += `<button data-productid="${product.id}" class="add-to-wishlist">&plus; Add to Wishlist</button></div>`;
 
+	//If this product has categories
+		//go through all the categories on this product. 
+			//if it's not in the unique categories list, 
+				//add it to the list
+	if( product.categories.length > 0 ){
+		for( let cat of product.categories ){
+			if( ! uniqueCategories.includes(cat) ){
+				uniqueCategories.push(cat);
+			}
+		}
+	}
 }
-
 container.innerHTML = productHTML;
-
 
 //Build the wishlist UI
 function buildDrawerUI(){
@@ -68,6 +76,12 @@ for( let button of buttons ){
 		let id = e.target.dataset.productid;
 		wishlistContents.push(id);
 		updateWishlist();
+
+		//change the button to show that this item is already on the list
+		e.target.classList.add('button-outline');
+		e.target.innerHTML = 'Added to Wishlist';
+		//remove the event listener on THIS button
+		e.target.replaceWith(e.target.cloneNode(true));
 	} );
 }
 
@@ -92,41 +106,38 @@ function lookupProduct( id ){
 	return catalog.find( product => product.id == id );
 }
 
-/* Filtering additions */
-/* https://codepen.io/vskand/pen/MWKKKYK?editors=0110 */
+//Filtering by Category
+setupFilterButtons();
 
-//get the filter buttons
-const filters = document.querySelectorAll('.filter');
+const filterButtons = document.querySelectorAll('button.filter');
+filterButtons.forEach( filter => {
+	filter.addEventListener( "click", filterProducts );
+} );
 
-filters.forEach(filter => { 
-  filter.addEventListener('click', function() {
-    let selectedFilter = filter.getAttribute('data-filter');
-    
-    //active tab
-    //remove all active filters
-    document.querySelectorAll('.filter.active').forEach( el => {
-    	el.classList.remove('active');
-    } );
-    filter.classList.add('active');
-    
-    //deal with showing/hiding the correct items
-    let itemsToHide = document.querySelectorAll(`.product:not(.${selectedFilter})`);
-    let itemsToShow = document.querySelectorAll(`.product.${selectedFilter}`);
+function filterProducts(e){
+	let selectedFilter = e.target.dataset.filter;
+	console.log(selectedFilter);
 
-    if (selectedFilter == 'all') {
-      itemsToHide = [];
-      itemsToShow = document.querySelectorAll('.product');
-    }
+	//get the elements to show and hide
+	let itemsToHide = document.querySelectorAll(`.product:not(.${selectedFilter})`);
+	let itemsToShow = document.querySelectorAll(`.product.${selectedFilter}`);
 
-    itemsToHide.forEach(el => {
-      el.classList.add('hide');
-      el.classList.remove('show');
-    });
+	itemsToHide.forEach( item => {
+		item.classList.add('hide');
+		item.classList.remove('show');
+	} );
+	itemsToShow.forEach( item => {
+		item.classList.add('show');
+		item.classList.remove('hide');
+	} );
 
-    itemsToShow.forEach(el => {
-      el.classList.remove('hide');
-      el.classList.add('show'); 
-    });
+}
 
-  });
-});
+function setupFilterButtons(){
+	const filterContainer = document.getElementById("filter-container");
+	let html = '';
+	uniqueCategories.forEach( cat => {
+		html += `<button class="filter button-outline" data-filter="${cat}">${cat}</button> `;
+	} );
+	filterContainer.insertAdjacentHTML('beforeend', html);
+}

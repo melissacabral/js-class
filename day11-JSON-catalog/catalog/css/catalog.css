@@ -5,10 +5,8 @@ body{
 #container{
 	display: flex;
 	justify-content: left;
-  align-items: center;
-  flex-wrap: wrap;
-
-	
+	align-items: center;
+	flex-wrap: wrap;	
 }
 .product{		
 	border: solid 1px #eee;
@@ -61,47 +59,47 @@ body{
 we're going to style the label instead */ 
 
 #drawer-toggle { 
-position: absolute; 
-opacity: 0; 
+	position: absolute; 
+	opacity: 0; 
 }
 
 #drawer-toggle-label { 
-user-select: none; 
-right: 0px; 
-top: 0px;
-padding: .5em 1em;
-display: block; 
-position: fixed; 
-background-color: #eee;
-z-index: 1; 
-transition: background  .25s ease-in-out; 
+	user-select: none; 
+	right: 0px; 
+	top: 0px;
+	padding: .5em 1em;
+	display: block; 
+	position: fixed; 
+	background-color: #eee;
+	z-index: 1; 
+	transition: background  .25s ease-in-out; 
 } 
 
 
 /* drawer menu pane  */ 
 
 #drawer { 
-position: fixed; 
-top: 0; 
-right:-300px; 
-height: 100%; 
-width: 300px; 
-background: #2f2f2f; 
-color: white;
-overflow-x: hidden; 
-overflow-y: auto; 
-padding: 20px; 
-transition: .25s ease-in-out; 
+	position: fixed; 
+	top: 0; 
+	right:-300px; 
+	height: 100%; 
+	width: 300px; 
+	background: #2f2f2f; 
+	color: white;
+	overflow-x: hidden; 
+	overflow-y: auto; 
+	padding: 20px; 
+	transition: .25s ease-in-out; 
 } 
 
 /* checked styles (menu open state) */ 
 
 #drawer-toggle:checked ~ #drawer-toggle-label { 
-height: 100%; 
-width: calc(100%); 
-background: rgba(255,255,255,.8); 
-z-index: 0;
-color: transparent;
+	height: 100%; 
+	width: calc(100%); 
+	background: rgba(255,255,255,.8); 
+	z-index: 0;
+	color: transparent;
 } 
 #drawer-toggle:checked ~ #drawer-toggle-label #qty{
 	display: none;
@@ -109,11 +107,11 @@ color: transparent;
 
 #drawer-toggle:checked ~ #drawer-toggle-label, 
 #drawer-toggle:checked ~ header { 
-right: 0px; 
+	right: 0px; 
 } 
 
 #drawer-toggle:checked ~ #drawer { 
-right: 0px; 
+	right: 0px; 
 } 
 
 
@@ -121,18 +119,18 @@ right: 0px;
 /* Menu item styles */ 
 
 #drawer ul { 
-list-style-type:none; 
+	list-style-type:none; 
 } 
 
 #drawer ul a { 
-display:block; 
-padding:10px; 
-color:#c7c7c7; 
-text-decoration:none; 
+	display:block; 
+	padding:10px; 
+	color:#c7c7c7; 
+	text-decoration:none; 
 } 
 
 #drawer ul a:hover { 
-color:white; 
+	color:white; 
 } 
 #drawer .drawer-price{
 	float: right;
@@ -154,34 +152,35 @@ color:white;
 @media all and (max-width:350px) { 
 
 	#drawer-toggle:checked ~ #drawer-toggle-label { 
-	height: 100%; 
-	width: 50px; 
+		height: 100%; 
+		width: 50px; 
 	} 
 
 	#drawer-toggle:checked ~ #drawer-toggle-label, 
 	#drawer-toggle:checked ~ header { 
-	left: calc(100% - 50px); 
+		left: calc(100% - 50px); 
 	} 
 
 	#drawer-toggle:checked ~ #drawer { 
-	width: calc(100% - 50px); 
-	padding: 20px; 
+		width: calc(100% - 50px); 
+		padding: 20px; 
 	} 
 
 	#drawer-toggle:checked ~ #page-content { 
-	margin-left: calc(100% - 50px); 
+		margin-left: calc(100% - 50px); 
 	} 
 
 }
+
 /* https://codepen.io/vskand/pen/MWKKKYK?editors=1010 */
 
 .hide { /* You can play with the seconds to change the "animation" */
-  animation: hide .4s ease-in-out 0s 1 normal forwards;
-  transform-origin: center;
+	animation: hide .4s ease-in-out 0s 1 normal forwards;
+	transform-origin: center;
 }
 .show { /* You can play with the seconds to change the "animation" */
-    animation: show .4s ease-in-out 0s 1 normal forwards;    
-    transform-origin: center;
+	animation: show .4s ease-in-out 0s 1 normal forwards;    
+	transform-origin: center;
 }
 button{
 	transition: background .3s ease-in;
@@ -190,28 +189,30 @@ button.filter.active{
 	background-color: #eee;
 }
 @keyframes hide {
-  0%{    
-    opacity: 1; 
-  } 
-  100% {
-    transform: scale(0);        
-    opacity: 0;
-    width: 0;
-    margin: 0;
-    padding: 0;
-  }
+	0%{  
+		transform: scale(1);  
+		opacity: 1; 
+	} 
+	100% {
+		transform: scale(0);        
+		opacity: 0;
+		width: 0;
+		margin: 0;
+		padding: 0;
+	}
 }
 @keyframes show {
-  0%{
-    transform: scale(0);  
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1); 
-    opacity: 1; 
-    width: 25%;  
-    margin: .5em;
-    padding: 1em;
+	0%{
+		transform: scale(0);  
+		opacity: 0;
+	}
+	100% {
+		transform: scale(1); 
+		opacity: 1; 
+		width: 25%;  
+		margin: .5em;
+		padding: 1em;
 
-  }
+	}
 }
+
