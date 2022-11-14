@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="player-container">
+       
+        <div class="img-container">
+            <img src="img/infraction.jpg" alt="Album Art" id="cover-art">
+        </div>
+        <h2 id="title">Ultraviolet</h2>
+        <h3 id="artist">Infraction</h3>
+        <audio src="music/infraction.mp3">Your Browser does not support this Audio</audio>
+        
+        <div class="progress-container" id="progress-container">
+            <div class="progress" id="progress"></div>
+            <div class="duration-wrapper">
+                <span id="current-time">0:00</span>
+                <span id="duration">1:37</span>
+            </div>
+        </div>
+        
+        <div class="player-controls">
+            <i class="fas fa-backward" id="previous" title="Previous"></i>
+            <i class="fas fa-play main-button" id="play" title="Play"></i>
+            <i class="fas fa-forward" id="next" title="Next"></i>
+        </div>
+    </div>
+  
+
+    <script src="js/audio-player.js"></script>
+</body>
+
+</html>
