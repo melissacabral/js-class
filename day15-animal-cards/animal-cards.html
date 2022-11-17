@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Zoo Animal Cards (external API)</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css" integrity="sha512-xiunq9hpKsIcz42zt0o2vCo34xV0j6Ny8hgEylN3XBglZDtTZ2nwnqF/Z/TTCc18sGdvCjbFInNd++6q3J0N6g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<div id="output"></div>
+
+	<button id="load-more">Load More</button>
+
+<script type="text/javascript">
+//Public API we are using: 
+//https://zoo-animal-api.herokuapp.com/
+
+//repo with many more:
+//https://github.com/public-apis/public-apis
+
+const outputContainer = document.getElementById('output');
+const loadButton = document.getElementById('load-more');
+
+loadButton.addEventListener("click", () => { loadAnimals(3) });
+
+function loadAnimals( number = 8 ){
+	const APIURL = `https://zoo-animal-api.herokuapp.com/animals/rand/${number}`;
+
+	fetch(APIURL)
+	.then( response => response.json() )
+	.then( animals => {
+		for( let animal of animals ){
+			//create a card
+			const card = document.createElement('div');
+			card.classList.add('card');
+			card.classList.add(animal.animal_type.toLowerCase());
+			card.classList.add('loading');
+
+			let cardHTML = `<div class="top-info">
+				<div class="image" style="background-image:url(${animal.image_link})">
+				</div>
+				<h2>${animal.name}</h2>
+				<h3>${animal.latin_name}</h3>
+			</div>
+
+			<h4>${animal.animal_type}</h4>`;
+			card.innerHTML = cardHTML;
+			outputContainer.append(card);
+
+			//preloader (create the img element because we used this image as a css background)
+			const preloaderImg = document.createElement("img");
+			preloaderImg.src = animal.image_link;
+			preloaderImg.addEventListener('load', () => {
+				card.classList.remove('loading');
+			});
+			preloaderImg.addEventListener('error', (e) => {
+				console.log(e.target);
+			});
+			
+		}
+	} );
+}
+
+loadAnimals();
+
+
+</script>
+</body>
+</html>

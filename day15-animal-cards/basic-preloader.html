@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		.loading{
+			opacity: .3;
+			background-color: gray;
+		}
+		body{
+			transition: all .3s ease-in;
+		}
+		.loading .spinner{
+			display: block;
+		}
+		.spinner {
+			display: none;			
+			border-width: 0.1em;
+			border-style: solid;
+			border-color: rgba(255,255,255,0) rgba(255,255,255,0.6) rgba(255,255,255,0.6) rgba(255,255,255,0.6);
+			width: 1em;
+			height: 1em;
+			overflow: hidden;
+			border-radius: 50%;
+			font-size: 2em;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin: -0.6em 0 0 -0.6em;
+			animation-name: rotation;
+			animation-duration: 0.5s;
+			animation-iteration-count: infinite;
+			animation-timing-function: linear;
+		}
+
+		@keyframes rotation {
+			from {
+				transform: rotate(0deg);
+			}
+			to {
+				transform: rotate(359deg);
+			}
+		}
+
+	</style>
+</head>
+<body class="loading">
+	<div class="spinner"></div>
+
+	<h1>This is a basic loading feedback example</h1>
+	<img src="https://picsum.photos/1800/1200" id="big-image">
+
+	<script type="text/javascript">
+		//when the image is done loading, remove the loading class from the body
+		const bigImage = document.getElementById('big-image');
+		bigImage.addEventListener('load', () => {
+			document.body.classList.remove('loading');
+
+		} );
+	</script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+body{
+			margin: 2vw;
+		}
+		#output{
+			display: grid;
+			grid-template-columns: repeat(1, 1fr);
+			grid-gap: 2vw;
+			margin-bottom: 3vw;
+		}
+		
+		.card{
+			background-color: #D9D8D0;
+			border-radius: 1em;
+			overflow: hidden;
+			padding-bottom: 1em;
+			display: flex;
+			justify-content: space-between;
+			flex-direction: column;
+			transition: opacity .3s ease-in;
+
+		}
+		.image{
+			min-height: 30vw;
+			background-size: cover;
+			background-position: center center;
+			margin-bottom: 1em;
+			transition: opacity .3s ease-in;
+			background-color: rgba(0,0,0,.4);
+		}
+		.loading{
+			opacity: .5;
+		}
+		.loading .image{
+			opacity: 0;
+		}
+
+		.card h2{
+			font-size: 3rem;
+			margin: 0 1.5rem;
+		}
+		.card h3{
+			font-style: italic;
+			font-size: 1.5rem;
+			letter-spacing: 0;
+			margin: 0 1.5rem;
+		}
+		.card h4{
+			margin: 2rem 1.5rem 0 ;
+			font-weight: bold;
+			font-size: 1.5rem;
+			text-transform: uppercase;
+			letter-spacing: 0;
+		}		
+		.reptile{
+			background-color: #BCD39E;
+		}
+		.amphibian{
+			background-color: #AEC9BB;
+		}
+		.fish{
+			background-color: #BCCCD9;
+		}
+		.marsupial{
+			background-color: #D1BDD9;
+		}
+		.mammal{
+			background-color: #D2B5B5;
+		}		
+		.bird{
+			background-color: #C9C6AE;
+		}
+
+		#load-more{
+			position: fixed;
+			bottom: 1em;
+			left: 1em;
+		}
+
+		@media screen and (min-width: 400px){	#output{	grid-template-columns: repeat(2, 1fr); }}
+		@media screen and (min-width: 700px){	#output{	grid-template-columns: repeat(3, 1fr); }}
+		@media screen and (min-width: 900px){	#output{	grid-template-columns: repeat(4, 1fr); }}
