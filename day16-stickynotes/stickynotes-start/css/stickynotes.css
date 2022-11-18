@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Sriracha&display=swap');
+body {
+ 
+  background: #5E6882;
+  font-family: Roboto, sans-serif;
+  margin: 1em;
+}
+#notes{
+  clear: both;
+  display: flex;
+  min-height: 85vh;
+  margin: 1em;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content:center;
+  font-family: Sriracha, sans-serif;
+  gap: 1em;
+}
+button#add-note,
+button#clear-notes{
+  background-color: white;
+  border-radius: .25em;
+  font-family: Roboto, sans-serif;
+  border: none;
+  outline: none;
+  padding: .5em 2em;
+  font-size: 110%;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .2s ease-in-out;
+  color: #424242;
+}
+#clear-notes{
+  float: right;
+}
+button#add-note:hover{
+  background-color: #BEF57E;
+}
+button#clear-notes:hover{
+  background-color: #F57EAE;
+}
+
+/*NOTE*/
+.note {
+  width: 300px;
+  min-height: 200px;
+  background-color: #FFFFA7;
+  padding: 10px;
+  margin: 0;
+  border-radius: 1px;
+  border: 1px solid #eee;
+  box-shadow: 4px 4px 4px rgba(0,0,0,.5);
+  transform: rotate(.5deg);
+ 
+background-image: linear-gradient(to bottom,  rgba(255,255,255,0.3) 0%,rgba(225,225,225,0.3) 24%,rgba(241,241,241,0.3) 25%,rgba(246,246,246,0.3) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+
+}
+.note.blue{
+  transform: rotate(-.5deg);
+  background-color: #C5FFE3;
+}
+.note.orange{
+  transform: rotate(1deg);
+  background-color: #FFE9D4;
+}
+
+textarea {
+  border: none;
+  min-height: calc(100% - 50px) !important;
+  width: 99%  !important;
+  background: transparent;
+  color: #545454;
+  font-size: 1.2em;
+  margin: 1em 0 0;
+  resize: none;
+  font-family: inherit;
+}
+
+/***TEST - shows error if browser doens't support local storage***/
+#error {
+  display: none;
+  border: none;
+  border-radius: 10px;
+  margin: 15px;
+  color: #fafafa;
+  padding: 15px;
+  box-sizing: border-box;
+  
+}
+
+.delete-note{
+  opacity: 0;
+  float: right;
+  background-color: #DDDDDD;
+  border-radius: 100em;
+  width: 1.5em;
+  height: 1.5em;
+  text-align: center;
+  line-height: 1.5em;
+  cursor: pointer;
+  transition: opacity, .2s ease-in;
+}
+.note:hover .delete-note{
+  opacity: 1;
+}
