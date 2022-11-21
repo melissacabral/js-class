@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Media (Webcam) Control</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css" integrity="sha512-xiunq9hpKsIcz42zt0o2vCo34xV0j6Ny8hgEylN3XBglZDtTZ2nwnqF/Z/TTCc18sGdvCjbFInNd++6q3J0N6g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="photobooth">
+    <div class="shutter">
+      <button id="take-photo">Take Photo</button>
+    </div>
+    <div class="filters">
+      <button class="button-clear filter" data-filter="none">No Filter</button>
+      <button class="button-clear filter" data-filter="split">Split RGB</button>
+      <button class="button-clear filter" data-filter="grayscale">Black &amp; White</button>
+      <button class="button-clear filter" data-filter="mosaic">Mosaic</button>
+      <button class="button-clear filter" data-filter="solarize">Solarize</button>
+      <button class="button-clear filter" data-filter="twirl">Twirl</button>
+
+    </div>   
+   
+     <canvas class="filtered-photo"></canvas>
+     <video class="camera-image"></video>  
+
+    <div class="photo-strip"></div>
+
+  </div>
+
+  <script src="js/imagefilters.js"></script>
+  <script src="js/script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+html {
+  background: #1F1D22;
+  color: white;
+}
+
+.photobooth {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  gap: 1em;
+  grid-template-areas: 
+  "shutter"
+  "preview"
+  "filters"
+  "original"
+  "photostrip";
+}
+.shutter{  grid-area: shutter; text-align: right; }
+.filtered-photo{ grid-area: preview; }
+.camera-image{ grid-area: original; align-self: end; }
+.photo-strip{ grid-area:photostrip; }
+.filters{ grid-area:filters; }
+
+
+
+.filtered-photo {
+ width: 100%;
+ height: auto;
+ max-width: 1000px;
+ display: block;
+}
+
+.camera-image {
+  width: 100%;
+  max-width: 300px;
+  box-shadow: 4px 4px 4px rgba(0,0,0,.5);
+  border-radius: 1em;
+}
+
+/*
+  Strip!
+*/
+
+.photo-strip {
+  padding: 2rem;
+}
+
+.photo-strip img {
+  width: 120px;
+  overflow-x: scroll;
+  padding: 0.8rem 0.8rem 2.5rem 0.8rem;
+  box-shadow: 0 0 3px rgba(0,0,0,0.2);
+  background: white;
+}
+
+.photo-strip a:nth-child(5n+1) img { transform: rotate(10deg); }
+.photo-strip a:nth-child(5n+2) img { transform: rotate(-2deg); }
+.photo-strip a:nth-child(5n+3) img { transform: rotate(8deg); }
+.photo-strip a:nth-child(5n+4) img { transform: rotate(-11deg); }
+.photo-strip a:nth-child(5n+5) img { transform: rotate(12deg); }
+
+@media (min-width: 700px){
+  .photobooth{
+   grid-template-columns:1fr 5fr;
+   grid-template-areas: 
+   ". shutter"
+   "filters preview"
+   "original preview"
+   "photostrip photostrip";
+ }
+}
