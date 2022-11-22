@@ -21,9 +21,10 @@
 			padding: .25em .5em .25em .75em;
 			margin-bottom: .5em;
 			background-color: #FBFBFB;
+			transition: opacity .2s ease-in-out;
 		}
 		.lesson a{
-			color: gray;
+			color: #434343;
 		}
 		.notes{
 			border-color:  #FFDA78;
@@ -31,12 +32,8 @@
 		.exercise{
 			border-color:  #98F698;
 		}
-		.codepen{
-			/*background-color: #636363;*/
+		.external{	
 			border-color: orchid;
-		}
-		.codepen, .codepen a{
-			/*color: white;*/
 		}
 		.source{
 			font-family: monospace;
@@ -56,20 +53,31 @@
 			text-align: center;
 			background-color: white;
 			padding: 1em;
+			margin-left: -1rem;
+
+		}
+		.hide{
+			opacity: .2;
+		}
+		.show{
+			opacity: 1;
 		}
 	</style>
 </head>
 <body>
 	<div class="container">
-		<h1>WS300 Scripting for the Web</h1>
-		<p>Index of the lessons and exercises done in class. View the page source of each to review the code involved!</p>
+		<h1>JavaScript for the Web</h1>
+		<h2>WS300 - Melissa Cabral - Fall 2022</h2>
+		<p>This is an archive of the lessons and exercises we did in class. View the page source of each to review the code we wrote!</p>
+		<p>More notes and resources are on Google Classroom</p>
 
-		<a href="https://github.com/melissacabral/js-class" class="button">View on GitHub</a>
+		<a href="https://github.com/melissacabral/js-class" class="button">View All on GitHub</a>
 
-		<legend>Key: 
-			<span class="item notes">Notes</span>
-			<span class="item exercise">Exercise</span>
-			<span class="item codepen">Codepen</span>
+		<legend>
+			<span class="item all hide" data-filter="all">Show All</span>
+			<span class="item notes" data-filter="notes">Notes</span>
+			<span class="item exercise" data-filter="exercise">Exercise</span>
+			<span class="item external" data-filter="external">External</span>
 		</legend>
 
 		<div class="row">
@@ -94,10 +102,10 @@
 			</div>
 			<div class="lesson column">
 				<h2>03: Controlling CSS</h2>
-				<div class="item codepen">
+				<div class="item external">
 					<a href="https://codepen.io/melissacabral/pen/jOKNJZV">Codepen: CSS Transitions</a>
 				</div>	
-				<div class="item codepen">
+				<div class="item external">
 					<a href="https://codepen.io/melissacabral/pen/OJELeLG">Codepen: CSS Custom Properties</a>
 				</div>	
 				<div class="item exercise">
@@ -188,17 +196,17 @@
 						Scroll progress bar
 					</a>
 				</div>
-				<div class="item codepen">
+				<div class="item external">
 					<a href="https://codepen.io/melissacabral/pen/ZEROjQr">
 						Codepen: Basic Parallax
 					</a>
 				</div>
-				<div class="item codepen">
+				<div class="item external">
 					<a href="https://codepen.io/melissacabral/pen/eYKzjxb">
 						Codepen: Sticky Nav
 					</a>
 				</div>
-				<div class="item codepen">
+				<div class="item external">
 					<a href="https://codepen.io/melissacabral/pen/vYrKVWQ">
 						Codepen: Full page scrolling site with nav
 					</a>
@@ -229,6 +237,16 @@
 					<br>
 					<a class="source" href="day11-JSON-catalog/catalog/data/data.json">&lt;source JSON&gt;</a>
 					<a class="source" href="day11-JSON-catalog/catalog/js/catalog.js">&lt;source JS&gt;</a>
+				</div>
+				<div class="item external">
+					<a href="https://codepen.io/melissacabral/pen/KKeWZLo">
+						Pure CSS Drawer Menu
+					</a>
+				</div>
+				<div class="item external">
+					<a href="https://codepen.io/melissacabral/pen/YzvZYyM">
+						Simple JS Filtering
+					</a>
 				</div>
 				
 			</div>
@@ -282,5 +300,46 @@
 		</div><!-- /row -->
 		<footer>&copy;2022 Melissa Cabral</footer>
 	</div>
+<script>
+const all_links = document.querySelectorAll('a');
+for (let a of all_links){
+	if(a.hostname != location.hostname) {
+		a.target = '_blank';
+	}
+}
+
+const filterButtons = document.querySelectorAll("legend .item");
+filterButtons.forEach((filter) => {
+  filter.addEventListener("click", filterIt);
+});
+
+function filterIt(e) {
+  let selectedFilter = e.target.dataset.filter;
+  let itemsToShow = document.querySelectorAll( `.lesson .item` );
+  let itemsToHide = [];
+
+  if (selectedFilter != 'all') {
+  	document.querySelector('legend .all').classList.remove("hide");
+	 itemsToHide = document.querySelectorAll( `.lesson .item:not(.${selectedFilter})` );
+  	 itemsToShow = document.querySelectorAll( `.lesson .item.${selectedFilter}` );
+  }else{
+  	document.querySelector('legend .all').classList.add("hide");
+  }
+
+ 
+
+  itemsToHide.forEach((item) => {
+    item.classList.add("hide");
+    item.classList.remove("show");
+  });
+  itemsToShow.forEach((item) => {
+    item.classList.add("show");
+    item.classList.remove("hide");
+  });
+}
+
+
+
+</script>
 </body>
 </html>
