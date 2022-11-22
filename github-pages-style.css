@@ -5,11 +5,11 @@ body{
 .hero{
 	background-color: #232D3A;
 	color: white;
-	padding: 18vh 0;
+	padding: 20vh 0 17vh;
 	margin-bottom: 2em;
 }
 .stripe{
-	position: fixed;
+	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
