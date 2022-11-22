@@ -1,0 +1,73 @@
+body{
+	background-color: #eee;
+	margin: 0;
+}
+.hero{
+	background-color: #232D3A;
+	color: white;
+	padding: 18vh 0;
+	margin-bottom: 2em;
+}
+.stripe{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	text-align: right;
+	padding: .5em 1em;
+	background-color: rgba(0,0,0,.4);
+}
+.stripe a{
+	color: white;
+}
+.lesson{
+	padding: 1em !important;
+	background-color: white;
+	margin: 1em;
+}
+.item{
+	border-left: 4px solid transparent;
+	padding: .25em .5em .25em .75em;
+	margin-bottom: .5em;
+	background-color: #FBFBFB;
+	transition: opacity .2s ease-in-out;
+}
+.lesson a{
+	color: #434343;
+}
+.notes{	border-color:  #FFDA78;	}
+.exercise{ border-color:  #98F698; }
+.external{ border-color: orchid; }
+
+.source{
+	font-family: monospace;
+	background-color: rgba(0,0,0,.05);
+	border-radius: .25em;
+	padding: .2em .5em;
+	margin-left: .2em;
+	color: gray;
+}
+footer{
+	padding: 3em 0;
+	text-align: center;
+	color: gray;
+}
+legend{
+	font-weight: normal;
+	text-align: center;
+	background-color: white;
+	padding: 1em;
+	margin-left: -1rem;
+}
+legend .item{
+	cursor: pointer;
+}
+.hide{
+	opacity: .2;
+}
+.show{
+	opacity: 1;
+}
+i.fa-solid{
+	opacity: .6;
+}

@@ -4,74 +4,33 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css" integrity="sha512-xiunq9hpKsIcz42zt0o2vCo34xV0j6Ny8hgEylN3XBglZDtTZ2nwnqF/Z/TTCc18sGdvCjbFInNd++6q3J0N6g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" type="text/css" href="github-pages-style.css">
 	<title>
 		Scripting for the Web Course by Melissa Cabral
 	</title>
-	<style >
-		body{
-			background-color: #eee;
-		}
-		.lesson{
-			padding: 1em !important;
-			background-color: white;
-			margin: 1em;
-		}
-		.item{
-			border-left: 4px solid transparent;
-			padding: .25em .5em .25em .75em;
-			margin-bottom: .5em;
-			background-color: #FBFBFB;
-			transition: opacity .2s ease-in-out;
-		}
-		.lesson a{
-			color: #434343;
-		}
-		.notes{
-			border-color:  #FFDA78;
-		}
-		.exercise{
-			border-color:  #98F698;
-		}
-		.external{	
-			border-color: orchid;
-		}
-		.source{
-			font-family: monospace;
-			background-color: rgba(0,0,0,.05);
-			border-radius: .25em;
-			padding: .2em .5em;
-			margin-left: .2em;
-			color: gray;
-		}
-		footer{
-			padding: 3em 0;
-			text-align: center;
-			color: gray;
-		}
-		legend{
-			font-weight: normal;
-			text-align: center;
-			background-color: white;
-			padding: 1em;
-			margin-left: -1rem;
-
-		}
-		.hide{
-			opacity: .2;
-		}
-		.show{
-			opacity: 1;
-		}
-	</style>
 </head>
 <body>
-	<div class="container">
-		<h1>JavaScript for the Web</h1>
-		<h2>WS300 - Melissa Cabral - Fall 2022</h2>
-		<p>This is an archive of the lessons and exercises we did in class. View the page source of each to review the code we wrote!</p>
-		<p>More notes and resources are on Google Classroom</p>
+	<div class="hero">
+		<div class="stripe">
+			
+		<a href="https://classroom.google.com/w/NTUwMTg1MDQyMDU0/t/all"> Google Classroom</a>
 
-		<a href="https://github.com/melissacabral/js-class" class="button">View All on GitHub</a>
+		</div>
+		<div class="container">
+			
+		<h1>WS300: JavaScript for the Web</h1>
+		<h3>Course Materials by Melissa Cabral &ndash; Fall 2022</h3>	
+
+		<a class="button" href="https://github.com/melissacabral/js-class" >
+		Download on GitHub
+		</a>
+		</div>
+	</div>
+	<div class="container">
+
+		<p>This is an archive of the lessons and exercises we did in class. View the page source of each to review the code we wrote!</p>
+	
 
 		<legend>
 			<span class="item all hide" data-filter="all">Show All</span>
@@ -83,11 +42,14 @@
 		<div class="row">
 			<div class="lesson column">
 				<h2>01: Basics</h2>
+				<div class="item notes">
+					<a href="https://docs.google.com/presentation/d/1Ckovj9gH2DGBfttwqkFrb_4RD8NwA3U4tP06jXtX0r8/edit">Notes: Syntax Basics</a>
+				</div>
 				<div class="item exercise">
 					<a href="./day01-practice/01-console-practice.html">Use the Browser Console</a>
 				</div>
-				<div class="item notes">
-					<a href="./day01-practice/02-syntax-basics.html">Notes: Syntax Basics</a>
+				<div class="item exercise">
+					<a href="./day01-practice/02-syntax-basics.html">Practice: Syntax Basics</a>
 				</div>
 			</div>
 			<div class="lesson column">
@@ -102,6 +64,9 @@
 			</div>
 			<div class="lesson column">
 				<h2>03: Controlling CSS</h2>
+				<div class="item notes">
+					<a href="https://docs.google.com/presentation/d/1dNHZr5mCSsr6EhunKQSsG_r42Gce3PDBKKN7I4PAWdY/">Notes: Essential CSS for JS effects</a>
+				</div>
 				<div class="item external">
 					<a href="https://codepen.io/melissacabral/pen/jOKNJZV">Codepen: CSS Transitions</a>
 				</div>	
@@ -273,6 +238,9 @@
 						Basic Preloading
 					</a>
 				</div>
+				<div class="item external">
+					<a href="https://github.com/public-apis/public-apis">Public API directory</a>
+				</div>
 			</div>
 			<div class="lesson column">
 				<h2>16: LocalStorage</h2>
@@ -295,16 +263,34 @@
 					<a class="source" href="day17-webcam/js/script.js">&lt;source JS&gt;</a>
 					<a class="source" href="day17-webcam/js/imagefilters.js">&lt;source Filter Library&gt;</a>
 
-				</div>					
+				</div>	
+				<div class="item external">
+					<a href="https://github.com/zhengsk/ImageFilters.js">Image Filter Library for Canvas</a>
+				</div>				
 			</div>
 		</div><!-- /row -->
 		<footer>&copy;2022 Melissa Cabral</footer>
 	</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.net.min.js"></script>
 <script>
+	VANTA.NET({
+  el: ".hero",
+  mouseControls: true,
+  touchControls: true,
+  gyroControls: false,
+  minHeight: 200.00,
+  minWidth: 1000.00,
+  scale: 1.00,
+  scaleMobile: 1.00,
+  color: 0x9b4dca
+})
 const all_links = document.querySelectorAll('a');
 for (let a of all_links){
 	if(a.hostname != location.hostname) {
 		a.target = '_blank';
+		a.insertAdjacentHTML('afterbegin', `<i class="fa-solid fa-arrow-up-right-from-square"></i> `)
 	}
 }
 
@@ -326,8 +312,6 @@ function filterIt(e) {
   	document.querySelector('legend .all').classList.add("hide");
   }
 
- 
-
   itemsToHide.forEach((item) => {
     item.classList.add("hide");
     item.classList.remove("show");
@@ -337,9 +321,6 @@ function filterIt(e) {
     item.classList.remove("hide");
   });
 }
-
-
-
 </script>
 </body>
 </html>
