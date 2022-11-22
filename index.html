@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css" integrity="sha512-xiunq9hpKsIcz42zt0o2vCo34xV0j6Ny8hgEylN3XBglZDtTZ2nwnqF/Z/TTCc18sGdvCjbFInNd++6q3J0N6g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<title>
+		Scripting for the Web Course by Melissa Cabral
+	</title>
+	<style >
+		body{
+			background-color: #eee;
+		}
+		.lesson{
+			padding: 1em !important;
+			background-color: white;
+			margin: 1em;
+		}
+		.item{
+			border-left: 4px solid transparent;
+			padding: .25em .5em .25em .75em;
+			margin-bottom: .5em;
+			background-color: #FBFBFB;
+		}
+		.lesson a{
+			color: gray;
+		}
+		.notes{
+			border-color:  #FFDA78;
+		}
+		.exercise{
+			border-color:  #98F698;
+		}
+		.codepen{
+			/*background-color: #636363;*/
+			border-color: orchid;
+		}
+		.codepen, .codepen a{
+			/*color: white;*/
+		}
+		.source{
+			font-family: monospace;
+			background-color: rgba(0,0,0,.05);
+			border-radius: .25em;
+			padding: .2em .5em;
+			margin-left: .2em;
+			color: gray;
+		}
+		footer{
+			padding: 3em 0;
+			text-align: center;
+			color: gray;
+		}
+		legend{
+			font-weight: normal;
+			text-align: center;
+			background-color: white;
+			padding: 1em;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>WS300 Scripting for the Web</h1>
+		<p>Index of the lessons and exercises done in class. View the page source of each to review the code involved!</p>
+
+		<a href="https://github.com/melissacabral/js-class" class="button">View on GitHub</a>
+
+		<legend>Key: 
+			<span class="item notes">Notes</span>
+			<span class="item exercise">Exercise</span>
+			<span class="item codepen">Codepen</span>
+		</legend>
+
+		<div class="row">
+			<div class="lesson column">
+				<h2>01: Basics</h2>
+				<div class="item exercise">
+					<a href="./day01-practice/01-console-practice.html">Use the Browser Console</a>
+				</div>
+				<div class="item notes">
+					<a href="./day01-practice/02-syntax-basics.html">Notes: Syntax Basics</a>
+				</div>
+			</div>
+			<div class="lesson column">
+				<h2>02: Logic</h2>
+				<div class="item notes">
+					<a href="./day02-logic/01-logic.html">Notes: Logic</a>
+				</div>
+				<div class="item exercise">
+					<a href="./day02-logic/02-calculator/index.html">Calculator</a>
+					<a class="source" href="day02-logic/02-calculator/js/calculator.js">&lt;source&gt;</a>
+				</div>			
+			</div>
+			<div class="lesson column">
+				<h2>03: Controlling CSS</h2>
+				<div class="item codepen">
+					<a href="https://codepen.io/melissacabral/pen/jOKNJZV">Codepen: CSS Transitions</a>
+				</div>	
+				<div class="item codepen">
+					<a href="https://codepen.io/melissacabral/pen/OJELeLG">Codepen: CSS Custom Properties</a>
+				</div>	
+				<div class="item exercise">
+					<a href="./day03-css-animations/01-changing-classes-start.html">Changing Classes</a>
+				</div>
+				<div class="item exercise">
+					<a href="./day03-css-animations/02-basic-card-flip.html">Basic Card Flip</a>
+				</div>	
+				<div class="item exercise">
+					<a href="day03-css-animations/03-tshirt-customizer.html">T-Shirt Customizer</a>
+				</div>					
+			</div>
+
+
+		</div><!-- /row -->
+
+		<div class="row">
+			<div class="lesson column">
+				<h2>04: DOM Manipulation</h2>
+				<div class="item notes">
+					<a href="day04-DOM/01-notes-DOM-101.html">Notes: DOM 101</a>
+				</div>
+				<div class="item notes">
+					<a href="day04-DOM/02-loops.html">
+						Notes: Loops
+					</a>
+				</div>
+				<div class="item exercise">
+					<a href="day04-DOM/03-salad-maker.html">
+						Salad Maker
+					</a>
+				</div>
+			</div>
+			<div class="lesson column">
+				<h2>05: Events</h2>
+				<div class="item notes">
+					<a href="day05-events/01-notes-events.html">
+						Notes: Events
+					</a>
+				</div>
+				<div class="item exercise">
+					<a href="day05-events/02-color-generator.html">
+						Random Color Generator
+					</a>
+				</div>	
+				<div class="item exercise">
+					<a href="day05-events/03-mousefollow.html">
+						Mouse Follow
+					</a>
+				</div>			
+			</div>
+			<div class="lesson column">
+				<h2>06: Events, Part II</h2>
+				
+				<div class="item exercise">
+					<a href="day06-events-part-2/01-taxi-move.html">
+						Move the taxi (keyboard)
+					</a>
+				</div>
+				<div class="item exercise">
+					<a href="day06-events-part-2/02-stopwatch.html">
+						Stopwatch (Intervals)
+					</a>
+				</div>
+			</div>
+		</div><!-- /row -->
+		<div class="row">
+			<div class="lesson column">
+				<h2>07: Form Interaction</h2>
+				<div class="item notes">
+					<a href="day07-form-interaction/01-form-interaction.html">Notes and Demo: Form Interaction</a>
+				</div>
+			</div>
+			<div class="lesson column">
+				<h2>08: Slidehsow</h2>
+				<div class="item exercise">
+					<a href="day08-slideshow/slideshow.html">
+						Photo slideshow with arrows and navigation
+					</a>
+					<a class="source" href="day08-slideshow/js/slideshow.js">&lt;source&gt;</a>
+				</div>
+				
+			</div>
+			<div class="lesson column">
+				<h2>09: Scrolling</h2>
+				<div class="item exercise">
+					<a href="day09-scrolling/scroll-progress.html">
+						Scroll progress bar
+					</a>
+				</div>
+				<div class="item codepen">
+					<a href="https://codepen.io/melissacabral/pen/ZEROjQr">
+						Codepen: Basic Parallax
+					</a>
+				</div>
+				<div class="item codepen">
+					<a href="https://codepen.io/melissacabral/pen/eYKzjxb">
+						Codepen: Sticky Nav
+					</a>
+				</div>
+				<div class="item codepen">
+					<a href="https://codepen.io/melissacabral/pen/vYrKVWQ">
+						Codepen: Full page scrolling site with nav
+					</a>
+				</div>				
+			</div>
+		</div><!-- /row -->
+		<div class="row">
+			<div class="lesson column">
+				<h2>10: Theater Seat Selection</h2>
+				<div class="item exercise">
+					<a href="day10-movie-theater-seats/seat-selection-refactored.html">Movie Theater Seat Selection</a>
+				</div>
+			</div>
+			<div class="lesson column">
+				<h2>11-13: Catalog</h2>
+				<ol>
+					<li>display all the products from the data
+					</li>
+					<li> make the "add to wishlist" functionality
+					</li>
+					<li> make the categories filterable
+					</li>
+				</ol>
+				<div class="item exercise">
+					<a href="day11-JSON-catalog/catalog/catalog.html">
+						Catalog
+					</a>
+					<br>
+					<a class="source" href="day11-JSON-catalog/catalog/data/data.json">&lt;source JSON&gt;</a>
+					<a class="source" href="day11-JSON-catalog/catalog/js/catalog.js">&lt;source JS&gt;</a>
+				</div>
+				
+			</div>
+			<div class="lesson column">
+				<h2>14: Audio</h2>
+				<div class="item exercise">
+					<a href="day14-audio-player/index.html">
+						Audio Player
+					</a>
+					<a class="source" href="day14-audio-player/js/audio-player.js">&lt;source&gt;</a>
+				</div>					
+			</div>
+		</div><!-- /row -->
+		<div class="row">
+			<div class="lesson column">
+				<h2>15: External APIs</h2>
+				<div class="item exercise">
+					<a href="day15-animal-cards/animal-cards.html">
+						Animal Fact Cards
+					</a>
+				</div>
+				<div class="item exercise">
+					<a href="day15-animal-cards/basic-preloader.html">
+						Basic Preloading
+					</a>
+				</div>
+			</div>
+			<div class="lesson column">
+				<h2>16: LocalStorage</h2>
+				
+				<div class="item exercise">
+					<a href="day16-stickynotes/stickynotes-start/stickynotes.html">
+						Sticky Notes with Memory
+					</a>
+					<a class="source" href="day16-stickynotes/stickynotes-start/js/stickynotes.js">&lt;source&gt;</a>
+				</div>
+				
+			</div>
+			<div class="lesson column">
+				<h2>17: User Media, Canvas</h2>
+				<div class="item exercise">
+					<a href="day17-webcam/index.html">
+						Webcam Photobooth
+					</a>
+					<br>
+					<a class="source" href="day17-webcam/js/script.js">&lt;source JS&gt;</a>
+					<a class="source" href="day17-webcam/js/imagefilters.js">&lt;source Filter Library&gt;</a>
+
+				</div>					
+			</div>
+		</div><!-- /row -->
+		<footer>&copy;2022 Melissa Cabral</footer>
+	</div>
+</body>
+</html>

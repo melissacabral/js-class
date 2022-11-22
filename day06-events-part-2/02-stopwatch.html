@@ -52,17 +52,21 @@
 	//when you click start, run the timer interval
 	startButton.addEventListener( 'click', function(e){
 		//turn the timer on, and let it update every centisecond (10ms)
-		interval = setInterval( advanceTimer, 10 );
+		if (!interval) {
+			interval = setInterval( advanceTimer, 10 );
+		}
 	} );
 
 	//when you click stop, pause the watch (stop running the interval)
 	stopButton.addEventListener( 'click', function(e){
 		clearInterval(interval);
+		interval = null;
 	} );
 
 	//reset button
 	resetButton.addEventListener( 'click', function(e){
 		clearInterval( interval );
+		interval = null;
 		//reset all the values
 		seconds = '00';
 		centiseconds = '00';

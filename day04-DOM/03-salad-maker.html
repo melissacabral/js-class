@@ -51,7 +51,7 @@
 		console.log(ingredient);
 		let saladLi = document.createElement('li');
 		saladList.appendChild(saladLi);
-		saladLi.innerText = ingredient;
+		saladLi.innerHTML = `<button>${ingredient}</button>`;
 		saladLi.classList.add('salad-item');
 	}
 
@@ -67,19 +67,19 @@
 		let extraLi = document.createElement('li');
 		extrasList.appendChild(extraLi);
 		extraLi.classList.add('extra-item');
-		extraLi.innerText = extra;
+		extraLi.innerHTML = `<button>${extra}</button>`;
 	}
 
 	//listen for all clicks on this document
 	document.addEventListener( 'click', function(event){
 		console.log(event.target);
 		//if you clicked on a salad item, remove it
-		if(event.target.matches('#my-salad li')){
-			event.target.remove();
+		if(event.target.matches('#my-salad button')){
+			event.target.parentElement.remove();
 		}else 
 		//if you clicked on an extra, clone it to the salad list
-		if(event.target.matches('#extra-toppings li')){
-			saladList.appendChild(event.target.cloneNode(true));
+		if(event.target.matches('#extra-toppings button')){
+			saladList.appendChild(event.target.parentElement.cloneNode(true));
 		}
 	} );
 

@@ -1,14 +1,100 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<title>JavaScript Syntax Basics</title>
+
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
+	
+	<!-- 
+		These assets make Melissa's notes look nice! 
+		You don't need these stylesheets or scripts for this demo
+	-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css" integrity="sha512-xiunq9hpKsIcz42zt0o2vCo34xV0j6Ny8hgEylN3XBglZDtTZ2nwnqF/Z/TTCc18sGdvCjbFInNd++6q3J0N6g==" crossorigin="anonymous" referrerpolicy="no-referrer" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/styles/atom-one-light.min.css"><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/highlight.min.js"></script>
 
 
 </head>
 <body>
 	<h1>This is some JS Practice</h1>
+	<h4>This is a preview of the code that is in the <code>&lt;script&gt;</code> at the bottom of the body.<br> Use the console (cmd + J) to view the real code!</h4>
+<pre><code class="language-javascript">// define a variable
+let score = 0;
+// update the value
+score = 10;
+//different ways to add
+score = score + 10;
+score += 10;
+//add 1
+score ++;
+//subtract 1 
+score --;
+//multiply by 10
+score *= 10;
+
+//show the value in the console
+console.log(score);
+
+//constants cannot be changed once set
+const player = &quot;Mario&quot;;
+//	redefining a const is not allowed
+// player = &quot;luigi&quot;;
+
+console.log(player);
+
+//legacy style variable
+var myVariable = &quot;hello there&quot;;
+console.log(myVariable);
+
+/*
+This is a block comment
+they can be many lines long
+
+
+ARRAYS!
+*/
+let myList = [&#039;Bananas&#039;, &#039;Milk&#039;, &#039;Cereal&#039;, &#039;Lettuce&#039;, &#039;Tomatoes&#039;, &#039;Apples&#039;, &quot;celery&quot;, &#039;peanut butter&#039; ];
+myList.push(&#039;Pumpkin&#039;);
+myList.push(&#039;Apricots&#039;);
+myList.push(&#039;Beans&#039;);
+myList.push(&#039;Potatoes&#039;);
+myList.push( player );
+//console.log(myList);
+//console.table( myList );
+
+//concatenate! Glue strings together with +
+console.log( &quot;\&quot;You&#039;re &quot; + player + &#039; &#039; + score );
+
+//es6 style interpolated string
+console.log(`The result is ${player} ${score}`);
+
+const price = 12.59;
+console.log(`The total price is \$${price.toFixed(2)}`);
+
+//built-in object (window) and property (innerWidth)
+let width = window.innerWidth;
+console.log(width);
+
+window.scrollTo({
+	  top: 500,
+	  left: 100,
+	  behavior: &#039;smooth&#039;
+	});
+
+//make a custom object JSON
+let car = {
+	make : &quot;Fiat&quot;,
+	model : &quot;500&quot;,
+	color : &quot;white&quot;,
+	drive : function(){ console.log(&#039;DRIVING IS HAPPENING!&#039;) }
+};
+console.log(car);
+
+//access the drive method
+car.drive();
+
+console.log(car.color)
+
+</code></pre>
 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -121,10 +207,11 @@
 		console.log(width);
 
 		window.scrollTo({
-			  top: 500,
+			  top: 0, //change this number and see what happens
 			  left: 100,
 			  behavior: 'smooth'
 			});
+		
 
 		//make a custom object JSON
 		let car = {
@@ -141,5 +228,8 @@
 		console.log(car.color)
 
 	</script>
+
+<!-- this is just to make Melissa's notes look nice! You don't need this script-->
+<script>hljs.highlightAll();</script>
 </body>
 </html>
